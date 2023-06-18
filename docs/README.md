@@ -25,7 +25,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Activities](#Activities)
-3. [SpaceMaster App][#spacemaster-images-under-construction]
+3. [SpaceMaster App](#spacemaster-images-under-construction)
 4. [Links](#links)
 
 ---
@@ -57,7 +57,7 @@ Users have the ability to edit their reservations. However, if they attempt to c
 The system allows users to cancel their own reservations or enables responsible persons listed in a reservation to cancel it. Users can also check the reservations for a particular space within a selected duration, which can range from past, present, to future dates. The maximum duration for viewing reservations is set to 30 days.
 
 ## SpaceMaster Images Under Construction
-<p align="center"> <img src = "docs/images/TechnologyStack.png" width="580"> </p>
+<p align="center"> <img src = "docs/images/sample.png" width="600"> </p>
 
 ## Links
 
