@@ -1,14 +1,4 @@
 <resources>
     <string name="app_name">My Application4</string>
     <string name="default_web_client_id">454298352762-idaqeuoeap3uiu1t5h7ekag78mpgaa1o.apps.googleusercontent.com</string>
-    <string name="sign_in"> Sign In </string>
-    <string name="password">Password</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
-    <string name="sign_in_with_google">Sign In with Google</string>
-    <string name="email">Email</string>
-    <string name="sign_up_with_google">sign up with google</string>
-    <string name="already_have_an_account">Already have an account ?</string>
-    <string name="todo">TODO</string>
-    <string name="SpaceMaster">SpaceMaster</string>
 </resources>
