@@ -1,4 +1,4 @@
-package com.example.SpaceMaster.java;
+package com.example.myapplication4;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.SpaceMaster.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -37,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mEmailEditText = findViewById(R.id.emailEditText);
         mPasswordEditText = findViewById(R.id.passwordEditText);
-        mSignupButton = findViewById(R.id.signUpButton);
+        mSignupButton = findViewById(R.id.signupButton);
         mLoginButton = findViewById(R.id.signInButton);
 
         mSignupButton.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent send = new Intent(SignUpActivity.this, SignInActivity.class);
+                Intent send = new Intent(SignUpActivity.this,SignInActivity.class);
                 startActivity(send);
             }
         });

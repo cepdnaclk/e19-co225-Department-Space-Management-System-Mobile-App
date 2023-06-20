@@ -3,16 +3,7 @@
     <style name="Base.Theme.MyApplication4" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/black</item>
-        <item name="android:statusBarColor">@color/black</item>
     </style>
 
-    <style name="Theme.MyApplication4" parent="Base.Theme.MyApplication4">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/black</item>
-        <item name="android:statusBarColor">@color/black</item>
-    </style>>
+    <style name="Theme.MyApplication4" parent="Base.Theme.MyApplication4" />
 </resources>
