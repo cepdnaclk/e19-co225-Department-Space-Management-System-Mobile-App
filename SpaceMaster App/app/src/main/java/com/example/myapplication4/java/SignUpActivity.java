@@ -1,4 +1,4 @@
-package com.example.myapplication4;
+package com.example.myapplication4.java;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication4.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -54,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent send = new Intent(SignUpActivity.this,SignInActivity.class);
+                Intent send = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(send);
             }
         });
