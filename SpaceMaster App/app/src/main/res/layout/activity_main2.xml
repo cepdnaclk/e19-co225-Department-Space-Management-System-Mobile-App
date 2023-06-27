@@ -5,72 +5,119 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
-    tools:context=".MainActivity2">
+    tools:context=".java.MainActivity2">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="mainactivity2"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.852" />
 
     <ImageView
         android:id="@+id/image_areas"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_mask"
-        android:visibility="visible"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="0.412" />
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.412" />
 
     <ImageView
-        android:alpha="0.4"
         android:id="@+id/image_1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_1"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.412" />
+
     <ImageView
-        android:alpha="0.4"
         android:id="@+id/image_2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_2"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.412" />
+
     <Button
         android:id="@+id/supa2button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
 
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <nl.joery.timerangepicker.TimeRangePicker
+        android:id="@+id/picker"
+        android:layout_width="306dp"
+        android:layout_height="250dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945"
+        app:trp_endTime="10:00"
+        app:trp_maxDurationMinutes="600"
+        app:trp_minDurationMinutes="30"
+        app:trp_sliderWidth="12dp"
+        app:trp_startTime="8:00"
+        app:trp_thumbIconEnd="@drawable/ic_launcher_background"
+        app:trp_thumbIconStart="@drawable/ic_launcher_background" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="260dp"
+        android:layout_height="140dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
