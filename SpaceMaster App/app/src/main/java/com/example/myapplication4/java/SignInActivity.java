@@ -42,7 +42,6 @@ public class SignInActivity extends AppCompatActivity {
     private Button mSignInButton;
     private Button mGoogleSignInButton;
     private Button mSignUpButton;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
