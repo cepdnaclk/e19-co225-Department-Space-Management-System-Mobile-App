@@ -26,6 +26,7 @@
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_mask"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -39,6 +40,7 @@
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -86,6 +88,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
 
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
