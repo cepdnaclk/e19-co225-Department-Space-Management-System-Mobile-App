@@ -146,7 +146,7 @@ class WeekCalendar {
 
             val colorRes = if (day.date == selectedDate) {
                 if(islastArgument) {
-                    newbookingfragment.upDateUi();
+                    newbookingfragment.upDateUi(3);
                 }
                 R.color.example_7_yellow
             } else {

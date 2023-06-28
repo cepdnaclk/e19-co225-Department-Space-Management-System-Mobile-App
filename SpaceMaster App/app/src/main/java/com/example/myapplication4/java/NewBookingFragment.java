@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
@@ -48,6 +50,11 @@ public class NewBookingFragment extends Fragment {
         private LocalDate date;
         private boolean tempVariable;
         private Button bookButton;
+        private TextView start_time;
+        private TextView end_time;
+    private LinearLayout layout_start_time;
+    private LinearLayout layout_end_time;
+
 
         public NewBookingFragment(){
             tempVariable=false;
@@ -100,6 +107,11 @@ public class NewBookingFragment extends Fragment {
                     }
                 }
             });
+
+            start_time=rootView.findViewById(R.id.start_time);
+            end_time=rootView.findViewById(R.id.end_time);
+            layout_start_time=rootView.findViewById(R.id.linear_layout_start);
+            layout_end_time=rootView.findViewById(R.id.linear_layout_end);
 
             lecture_hall1_red =rootView.findViewById(R.id.lecture_hall1_red);
             lecture_hall1_green =rootView.findViewById(R.id.lecture_hall1_green);
@@ -159,22 +171,24 @@ public class NewBookingFragment extends Fragment {
             return rootView;
         }
 
-    public void upDateUi() {
-        int selected_start_time=picker.getStartTimeMinutes();
-        int selected_end_time=picker.getEndTimeMinutes();
+    public void upDateUi(Integer flagStartTimeChange) {
+
+
+        int selected_start_time = picker.getStartTimeMinutes();
+        int selected_end_time = picker.getEndTimeMinutes();
         Arrays.fill(isLectureHallAvailable, true);
         List<Map<String, Object>> hashMapList = FirebaseHandler.readLocal(getContext().getApplicationContext());
         for (Map<String, Object> hashMap : hashMapList) {
-            if(weekCalendar.getSelectedDate().toString().equals((String)hashMap.get("date"))){
-                String lecture_hall= (String) hashMap.get("lecture_hall");
+            if (weekCalendar.getSelectedDate().toString().equals((String) hashMap.get("date"))) {
+                String lecture_hall = (String) hashMap.get("lecture_hall");
                 int startTime = Integer.valueOf((String) hashMap.get("start_time"));
                 int endTime = Integer.valueOf((String) hashMap.get("end_time"));
-            if (!((selected_start_time < startTime && selected_end_time <= startTime)
-                    || (selected_start_time >= endTime))) {
-                isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12,13))]=false;
+                if (!((selected_start_time < startTime && selected_end_time <= startTime)
+                        || (selected_start_time >= endTime))) {
+                    isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12, 13))] = false;
 
+                }
             }
-        }
         }
         if (isLectureHallAvailable[1]) {
             lecture_hall1_red.setVisibility(View.INVISIBLE);
@@ -193,5 +207,18 @@ public class NewBookingFragment extends Fragment {
             lecture_hall2_red.setVisibility(View.VISIBLE);
             lecture_hall2_green.setVisibility(View.INVISIBLE);
         }
+        if (flagStartTimeChange==1) {
+            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+            layout_end_time.setVisibility(View.GONE);
+            layout_start_time.setVisibility(View.VISIBLE);
+        } else if(flagStartTimeChange==2) {
+            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            layout_start_time.setVisibility(View.GONE);
+            layout_end_time.setVisibility(View.VISIBLE);
+        } else if (flagStartTimeChange==3) {
+
+            layout_start_time.setVisibility(View.VISIBLE);
+            layout_end_time.setVisibility(View.VISIBLE);
         }
+    }
 }

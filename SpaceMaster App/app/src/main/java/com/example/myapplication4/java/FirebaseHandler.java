@@ -142,7 +142,7 @@ public class FirebaseHandler {
                 String json = new Gson().toJson(hashMapList);
                 editor.putString("data", json);
                 editor.apply();
-                newBookingFragment.upDateUi();
+                newBookingFragment.upDateUi(3);
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

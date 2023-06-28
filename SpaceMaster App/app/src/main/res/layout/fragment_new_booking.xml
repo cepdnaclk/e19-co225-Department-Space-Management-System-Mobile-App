@@ -172,6 +172,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_margin="5dp"
+            android:id="@+id/linear_layout_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -193,15 +194,17 @@
                 android:text="Start at"/>
             <TextView
                 android:layout_width="wrap_content"
+                android:id="@+id/start_time"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/white"
-                android:text="23456"/>
+                android:text="8:00"/>
             </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
             android:layout_margin="5dp"
+            android:id="@+id/linear_layout_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -223,10 +226,11 @@
                     android:text="End at"/>
                 <TextView
                     android:layout_width="wrap_content"
+                    android:id="@+id/end_time"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
-                    android:text="23456"/>
+                    android:text="10:00"/>
             </LinearLayout>
 
         </LinearLayout>
