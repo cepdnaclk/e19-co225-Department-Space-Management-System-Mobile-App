@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/black"
-    tools:context=".java.NewBookingFragment">
+    tools:context=".java.NewBookingFragment"
+    android:background="@color/example_1_bg_light">
 
 
     <ImageView
@@ -16,10 +16,10 @@
         android:src="@drawable/p2_ship_mask"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <ImageView
         android:id="@+id/image"
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <ImageView
         android:id="@+id/lecture_hall1_red"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <ImageView
         android:id="@+id/lecture_hall1_green"
@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <ImageView
         android:id="@+id/lecture_hall2_green"
@@ -72,40 +72,47 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
+
     <ImageView
         android:id="@+id/lecture_hall2_red"
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default3"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.893" />
 
     <nl.joery.timerangepicker.TimeRangePicker
         android:id="@+id/picker"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-
+        android:layout_width="301dp"
+        android:layout_height="301dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.791"
+        app:layout_constraintVertical_bias="0.28"
         app:trp_endTime="10:00"
         app:trp_maxDurationMinutes="600"
         app:trp_minDurationMinutes="30"
-        app:trp_sliderRangeColor="@color/blue_800"
-        app:trp_sliderWidth="12dp"
+        app:trp_sliderColor="#30FFFFFF"
+        app:trp_clockLabelColor="@color/white"
+        app:trp_clockTickColor="@color/white"
+        app:trp_sliderRangeColor="@color/example_7_yellow"
+        app:trp_sliderWidth="30dp"
         app:trp_startTime="8:00"
-        app:trp_thumbIconEnd="@drawable/ic_launcher_background"
-        app:trp_thumbIconStart="@drawable/ic_launcher_background" />
+        app:trp_sliderRangeGradientStart="@color/yellowHard"
+        app:trp_sliderRangeGradientMiddle="@color/yellowMed"
+        app:trp_sliderRangeGradientEnd="@color/yellowSoft"
+        app:trp_thumbIconEnd="@drawable/ic_moon"
+        app:trp_thumbIconStart="@drawable/ic_alarm"
+        app:trp_thumbColor="#00FFFFFF"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -121,7 +128,6 @@
             android:id="@+id/exSevenToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/example_1_bg_light"
             android:visibility="visible"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -129,14 +135,9 @@
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/example_1_bg_light"
             android:visibility="visible"
             app:cv_dayViewResource="@layout/week_calendar_day"
-<<<<<<< HEAD
-            app:cv_monthHeaderResource="@layout/example_2_calendar_header"
-=======
             app:cv_monthHeaderResource="@layout/month_calendar_header"
->>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
             app:layout_constraintBottom_toBottomOf="@+id/picker"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
