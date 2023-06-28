@@ -26,12 +26,18 @@ import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.kizitonwose.calendar.view.ViewContainer
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 
 
 class MonthCalendar {
 
-    private var selectedDate: LocalDate? = null
+    private var selectedDate: LocalDate? = LocalDate.now()
     fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context) {
+
+        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context)
+        if (list.isNotEmpty()) {
+            selectedDate = LocalDate.parse(list.first(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        }
 
         var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view)
         var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
@@ -40,14 +46,6 @@ class MonthCalendar {
         itemTouchHelper.attachToRecyclerView(recyclerView)
         recyclerView.adapter = adapter;
         recyclerView.layoutManager = LinearLayoutManager(Context);
-
-
-//
-//        recyclerView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-//            // Handle item click
-//            val selectedItem = listView.getItemAtPosition(position) as String
-//            // Perform actions based on the clicked item
-//        }
 
 
 
@@ -60,19 +58,18 @@ class MonthCalendar {
             init {
                 view.setOnClickListener {
                     if (day.position == DayPosition.MonthDate) {
-                        if (selectedDate == day.date) {
-                            selectedDate = null
-                            calendarView.notifyDayChanged(day)
-                        } else {
-                            val oldDate = selectedDate
-                            selectedDate = day.date
-                            calendarView.notifyDateChanged(day.date)
-                            oldDate?.let { calendarView.notifyDateChanged(oldDate) }
-                        }
-        //                        menuItem.isVisible = selectedDate != null
-                    }
-                }
-            }
+                        val oldDate = selectedDate
+                        selectedDate = day.date
+                        calendarView.notifyDateChanged(day.date)
+                        oldDate?.let { calendarView.notifyDateChanged(oldDate) }
+                        itemTouchHelper.attachToRecyclerView(null);
+                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+                        adapter = CustomAdapter(Context, dataList)
+                        itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
+                        itemTouchHelper.attachToRecyclerView(recyclerView)
+                        recyclerView.adapter = adapter;
+                        recyclerView.layoutManager = LinearLayoutManager(Context);
+            }}}
         }
 
         calendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
@@ -86,13 +83,7 @@ class MonthCalendar {
                     // Show the month dates. Remember that views are reused!
                     container.bind.exOneDayText.visibility = View.VISIBLE
                     if (day.date == selectedDate) {
-                        itemTouchHelper.attachToRecyclerView(null);
-                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
-                        adapter = CustomAdapter(Context, dataList)
-                        itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
-                        itemTouchHelper.attachToRecyclerView(recyclerView)
-                        recyclerView.adapter = adapter;
-                        recyclerView.layoutManager = LinearLayoutManager(Context);
+
 
 
 //                        val dpValue = 100 // Height of each item in dp
@@ -111,6 +102,11 @@ class MonthCalendar {
                         container.bind.exOneDayText.setTextColor(Color.BLACK)
                         container.bind.exOneDayText.background = null
                     }
+                    if (list.contains(day.date.toString()) && day.date!=selectedDate) {
+                        // The date is present in the list
+                        container.bind.exOneDayText.setTextColor(Color.YELLOW)
+                    }
+
 
                 } else {
                     // Hide in and out dates

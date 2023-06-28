@@ -30,5 +30,18 @@ public class GetUserBookings {
         }
         return resultList ;
     }
-    
+    public static List<String> readUserBookedDates(Context context){
+        List<Map<String, Object>> hashMapList = FirebaseHandler.readLocal(context);
+        String targetKey = "uid";  // Specify the target key to search for
+        Object targetValue = FirebaseAuth.getInstance().getCurrentUser().getUid();  // Specify the target value to search for
+        List<String> dataList=new ArrayList<>();
+        for (Map<String, Object> map : hashMapList) {
+            // Check if the map contains the specified key-value pair
+            if (map.containsKey(targetKey) && map.get(targetKey).equals(targetValue)) {
+                dataList.add((String) map.get("date"));
+            }
+        }
+        return dataList;
+    }
+
 }
