@@ -3,7 +3,7 @@ import com.example.myapplication4.java.NewBookingFragment
 import nl.joery.timerangepicker.TimeRangePicker
 
 class TimePicker {
-    fun hello(picker:nl.joery.timerangepicker.TimeRangePicker, newbookingfragment: NewBookingFragment){
+    fun hello(picker:nl.joery.timerangepicker.TimeRangePicker,isLastArgument:Boolean,newbookingfragment: NewBookingFragment){
         picker.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
             override fun onStartTimeChange(startTime: TimeRangePicker.Time) {
 //                Log.i("aa", "Start time: " + startTime)
@@ -18,7 +18,9 @@ class TimePicker {
 
             override fun onDurationChange(duration: TimeRangePicker.TimeDuration) {
 //                Log.i("aa", "Duration: " + duration.durationMinutes)
-                newbookingfragment.upDateUi()
+                if (isLastArgument) {
+                    newbookingfragment.upDateUi()
+                }
             }
         })
 

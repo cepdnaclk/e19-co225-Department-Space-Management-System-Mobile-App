@@ -14,10 +14,10 @@ import java.util.Map;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<Map<String, Object>> data;
+    private List<String> data;
     private OnItemClickListener listener;
 
-    public MyAdapter(List<Map<String, Object>> data, OnItemClickListener listener) {
+    public MyAdapter(List<String> data, OnItemClickListener listener) {
         this.data = data;
         this.listener = listener;
     }
@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String item = (String) data.get(position).get("lecture_hall");
+        final String item = (String) data.get(position);
         holder.textViewItem.setText(item);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

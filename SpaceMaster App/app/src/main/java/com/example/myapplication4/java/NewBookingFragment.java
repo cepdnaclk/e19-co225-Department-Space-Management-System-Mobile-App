@@ -52,11 +52,12 @@ public class NewBookingFragment extends Fragment {
         public NewBookingFragment(){
             tempVariable=false;
         }
-        public NewBookingFragment(LocalDate  date,int startTime,int endTime){
+        public NewBookingFragment(LocalDate  date,int startTime,int endTime,String selected_lecture_hall){
             tempVariable=true;
             this.date=date;
             this.startTime=startTime;
             this.endTime=endTime;
+            this.selected_lecture_hall=selected_lecture_hall;
         }
 
 
@@ -77,7 +78,7 @@ public class NewBookingFragment extends Fragment {
 
             TimePicker timePicker =new TimePicker();
             picker=rootView.findViewById(R.id.picker);
-            timePicker.hello(picker,NewBookingFragment.this);
+            timePicker.hello(picker,true,NewBookingFragment.this);
             if (tempVariable) {
                 picker.setStartTimeMinutes(startTime);
                 picker.setEndTimeMinutes(endTime);
@@ -141,6 +142,12 @@ public class NewBookingFragment extends Fragment {
 
                                 lecture_hall1_red.setImageAlpha(104);
                                 lecture_hall1_green.setImageAlpha(104);
+                            }else if (Math.abs(color+12695861)<tolerance) {
+                                selected_lecture_hall="lecture_hall3";
+                            }else if (Math.abs(color+14438067)<tolerance) {
+                                selected_lecture_hall="lecture_hall4";
+                            }else if (Math.abs(color+8421505)<tolerance) {
+                                selected_lecture_hall="lecture_hall5";
                             }
                             Toast.makeText(getContext(), Integer.toString(Color.RED)+" "+Integer.toString(hotspots.getPixel(evX, evY)), Toast.LENGTH_SHORT).show();
 
