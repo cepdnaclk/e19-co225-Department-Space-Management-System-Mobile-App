@@ -55,12 +55,20 @@ public class MainActivity2 extends AppCompatActivity {
         calendar = Calendar.getInstance();
         TimePicker timePicker =new TimePicker();
         picker=findViewById(R.id.picker);
+<<<<<<< HEAD
+        timePicker.hello(picker,MainActivity2.this);
+=======
 //        timePicker.hello(picker,MainActivity2.this);
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
         WeekCalendar weekCalendar =new WeekCalendar();
         caland=findViewById(R.id.calendarView);
         exsevenview=findViewById(R.id.exSevenToolbar);
+<<<<<<< HEAD
+        weekCalendar.hello2(caland,exsevenview);
+=======
 //        weekCalendar.weekcalendarcaller(caland,exsevenview);
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
         DatePicker datePicker = findViewById(R.id.datePicker);
         LocalDate todayDate=LocalDate.now();

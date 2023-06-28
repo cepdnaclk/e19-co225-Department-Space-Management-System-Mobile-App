@@ -5,7 +5,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.example.myapplication4.R
 import com.example.myapplication4.databinding.WeekCalendarDayBinding
+<<<<<<< HEAD
+=======
 import com.example.myapplication4.java.NewBookingFragment
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -19,7 +22,10 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 class WeekCalendar {
+<<<<<<< HEAD
+=======
     private var setDate=false;
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
     private var selectedDate: LocalDate? = null
     fun setSelectedDate(date:LocalDate){
         selectedDate=date;

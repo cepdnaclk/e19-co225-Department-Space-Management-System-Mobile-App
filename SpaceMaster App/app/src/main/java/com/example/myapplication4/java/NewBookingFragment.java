@@ -19,7 +19,10 @@ import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.kotlin.WeekCalendar;
+<<<<<<< HEAD
+=======
 import com.example.myapplication5.kotlin.TimePicker;
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
 import java.time.LocalDate;
@@ -66,6 +69,12 @@ public class NewBookingFragment extends Fragment {
                 Bundle savedInstanceState) {
             View rootView=inflater.inflate(R.layout.fragment_new_booking, container, false);
 
+<<<<<<< HEAD
+            WeekCalendar weekCalendar =new WeekCalendar();
+            caland=rootView.findViewById(R.id.calendarView);
+            exsevenview=rootView.findViewById(R.id.exSevenToolbar);
+            weekCalendar.hello2(caland,exsevenview);
+=======
             weekCalendar =new WeekCalendar();
             if (tempVariable) {
                 weekCalendar.setSelectedDate(date);
@@ -155,6 +164,7 @@ public class NewBookingFragment extends Fragment {
                     return true;
                 }
             });
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
             return rootView;
         }

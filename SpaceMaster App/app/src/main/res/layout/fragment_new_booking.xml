@@ -128,7 +128,6 @@
             android:id="@+id/exSevenToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/example_1_bg"
             android:visibility="visible"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -136,7 +135,6 @@
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/example_1_bg"
             android:visibility="visible"
             app:cv_dayViewResource="@layout/week_calendar_day"
             app:cv_monthHeaderResource="@layout/month_calendar_header"
