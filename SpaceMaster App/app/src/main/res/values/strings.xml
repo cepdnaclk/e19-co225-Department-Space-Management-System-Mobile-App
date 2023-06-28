@@ -3,4 +3,13 @@
     <string name="default_web_client_id">454298352762-idaqeuoeap3uiu1t5h7ekag78mpgaa1o.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">todo</string>
+    <string name="SpaceMaster">SpaceMaster</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="don_t_have_an_account">Don\'t have an account</string>
+    <string name="already_have_an_account">Already have an account back to</string>
+    <string name="sign_up">Sign up</string>
 </resources>
