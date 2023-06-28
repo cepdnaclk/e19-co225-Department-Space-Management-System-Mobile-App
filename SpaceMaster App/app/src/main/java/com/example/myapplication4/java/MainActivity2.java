@@ -15,13 +15,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
-import com.example.myapplication4.kotlin.KotlinFile2;
-import com.example.myapplication5.kotlin.KotlinFile;
+import com.example.myapplication4.kotlin.WeekCalendar;
+import com.example.myapplication5.kotlin.TimePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.kizitonwose.calendar.view.CalendarView;
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
 import java.time.LocalDate;
@@ -31,7 +30,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import nl.joery.timerangepicker.TimeRangePicker;
 
@@ -55,14 +53,14 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         calendar = Calendar.getInstance();
-        KotlinFile kotlinFile=new KotlinFile();
+        TimePicker timePicker =new TimePicker();
         picker=findViewById(R.id.picker);
-        kotlinFile.hello(picker,MainActivity2.this);
+//        timePicker.hello(picker,MainActivity2.this);
 
-        KotlinFile2 kotlinFile2=new KotlinFile2();
+        WeekCalendar weekCalendar =new WeekCalendar();
         caland=findViewById(R.id.calendarView);
         exsevenview=findViewById(R.id.exSevenToolbar);
-        kotlinFile2.hello2(caland,exsevenview);
+//        weekCalendar.weekcalendarcaller(caland,exsevenview);
 
         DatePicker datePicker = findViewById(R.id.datePicker);
         LocalDate todayDate=LocalDate.now();
@@ -178,21 +176,13 @@ public class MainActivity2 extends AppCompatActivity {
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("duration", duration);
                             hashMapList.add(hashMap1);
-
-
-                            // Log the booking data
-//                            Log.i("abc", "selected_start_time: " + selected_start_time);
-//                            Log.i("abc", "selected_end_time: " + selected_end_time);
-                            Log.i("abc", "Start Time: " + startTime);
-                            Log.i("abc", "End Time: " + endTime);
-//                            Log.i("abc", "Duration: " + duration);
                         }
                     } else {
 
                         // Handle errors
                         Log.e("abc", "Error getting bookings: " + task.getException());
                     }
-                    upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
+//                    upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
 
                 });
     }
@@ -214,12 +204,10 @@ public class MainActivity2 extends AppCompatActivity {
         if(trueOrFalse){
             b.setVisibility(View.INVISIBLE);
             c.setVisibility(View.VISIBLE);
-//            Log.i("abc", "a");
 
         }else{
             b.setVisibility(View.VISIBLE);
             c.setVisibility(View.INVISIBLE);
-//            Log.i("abc", "b");
 
         }
     }

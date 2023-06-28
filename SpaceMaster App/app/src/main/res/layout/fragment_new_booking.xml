@@ -5,20 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
-    tools:context=".java.MainActivity2">
+    tools:context=".java.NewBookingFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mainactivity2"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
 
     <ImageView
         android:id="@+id/image_areas"
@@ -45,12 +33,12 @@
         app:layout_constraintVertical_bias="0.208" />
 
     <ImageView
-        android:id="@+id/image_1"
+        android:id="@+id/lecture_hall1_red"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -59,10 +47,10 @@
         app:layout_constraintVertical_bias="0.208" />
 
     <ImageView
-        android:id="@+id/image_2"
+        android:id="@+id/lecture_hall1_green"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,14 +60,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.208" />
 
-    <Button
-        android:id="@+id/supa2button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-
+    <ImageView
+        android:id="@+id/lecture_hall2_green"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p2_ship_default4"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+    <ImageView
+        android:id="@+id/lecture_hall2_red"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p2_ship_default3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
 
     <nl.joery.timerangepicker.TimeRangePicker
         android:id="@+id/picker"
@@ -91,7 +97,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863"
+        app:layout_constraintVertical_bias="0.791"
         app:trp_endTime="10:00"
         app:trp_maxDurationMinutes="600"
         app:trp_minDurationMinutes="30"
@@ -101,23 +107,8 @@
         app:trp_thumbIconEnd="@drawable/ic_launcher_background"
         app:trp_thumbIconStart="@drawable/ic_launcher_background" />
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="260dp"
-        android:layout_height="140dp"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"
-        android:textColor="#FF0000"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
-
-
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -129,8 +120,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/exSevenToolbar"
             android:layout_width="match_parent"
-            android:background="@color/blue_800"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_800"
             android:visibility="visible"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -150,6 +141,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <Button
+        android:id="@+id/bookbutton"
+        android:layout_width="101dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="196dp"
+        android:text="Book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
