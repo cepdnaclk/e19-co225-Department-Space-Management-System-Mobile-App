@@ -13,6 +13,6 @@
     <string name="already_have_an_account">Already have an account back to</string>
     <string name="sign_up">Sign up</string>
     <string name="search_by">Search By</string>
-    <string name="search_by_time">Search by Time</string>
-    <string name="search_by_space">Search by Space</string>
+    <string name="search_by_time">Time</string>
+    <string name="search_by_space">Space</string>
 </resources>

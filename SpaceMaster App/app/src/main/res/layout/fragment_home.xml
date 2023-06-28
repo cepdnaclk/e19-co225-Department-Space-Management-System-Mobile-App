@@ -5,7 +5,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-    android:background="@color/example_1_bg_light"
+    android:background="@color/example_1_bg"
 tools:context=".java.HomeFragment">
 
     <ImageView
@@ -20,7 +20,7 @@ tools:context=".java.HomeFragment">
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.101" />
 
     <TextView
         android:id="@+id/textView3"
@@ -36,10 +36,10 @@ tools:context=".java.HomeFragment">
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <TextView
         android:id="@+id/textView2"
@@ -49,45 +49,51 @@ tools:context=".java.HomeFragment">
         android:text="@string/search_by"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399" />
+        app:layout_constraintVertical_bias="0.356" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/searchBySpaceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellowHard"
         android:drawableBottom="@drawable/baseline_dashboard_24"
-        android:background="@drawable/button_background"
-        android:padding="12sp"
+        android:padding="20sp"
         android:text="@string/search_by_space"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textColor="@color/example_1_bg"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/searchByTimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
+        android:backgroundTint="@color/yellowHard"
         android:drawableBottom="@drawable/baseline_access_time_24"
-        android:padding="12sp"
+        android:padding="20sp"
+        android:paddingStart="25sp"
+        android:paddingEnd="25sp"
         android:text="@string/search_by_time"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textColor="@color/example_1_bg"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/searchBySpaceButton"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
