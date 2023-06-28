@@ -8,6 +8,8 @@ class KotlinFile {
         picker.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
             override fun onStartTimeChange(startTime: TimeRangePicker.Time) {
                 Log.i("aa", "Start time: " + startTime)
+
+
             }
 
             override fun onEndTimeChange(endTime: TimeRangePicker.Time) {
@@ -16,7 +18,7 @@ class KotlinFile {
 
             override fun onDurationChange(duration: TimeRangePicker.TimeDuration) {
                 Log.i("aa", "Duration: " + duration.durationMinutes)
-                inst.getData(picker.startTimeMinutes, picker.endTimeMinutes)
+                inst.upDateUi(picker.startTimeMinutes, picker.endTimeMinutes)
             }
         })
 
