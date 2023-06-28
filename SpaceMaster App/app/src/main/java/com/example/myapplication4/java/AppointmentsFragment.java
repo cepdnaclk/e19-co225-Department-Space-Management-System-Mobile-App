@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.example.myapplication4.R;
 
-public class ShortsFragment extends Fragment {
+public class AppointmentsFragment extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shorts, container, false);
+        return inflater.inflate(R.layout.fragment_appointments, container, false);
     }
 }
