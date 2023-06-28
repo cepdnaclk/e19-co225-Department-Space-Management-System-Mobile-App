@@ -100,7 +100,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
+                            Log.i("abc", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             // Additional operations after successful sign-in
                             Intent intent = new Intent(SignInActivity.this, MainActivity2.class);
@@ -143,14 +143,14 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential:success");
+                            Log.i("abc", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             // Additional operations after successful sign-in
-                            Intent intent = new Intent(SignInActivity.this, MainActivity2.class);
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Log.i(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }

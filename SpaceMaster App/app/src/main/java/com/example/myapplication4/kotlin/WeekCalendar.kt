@@ -5,6 +5,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.example.myapplication4.R
 import com.example.myapplication4.databinding.WeekCalendarDayBinding
+<<<<<<< HEAD
+=======
+import com.example.myapplication4.java.NewBookingFragment
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -18,10 +22,22 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 class WeekCalendar {
+<<<<<<< HEAD
+=======
+    private var setDate=false;
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
     private var selectedDate: LocalDate? = null
+    fun setSelectedDate(date:LocalDate){
+        selectedDate=date;
+        setDate=true;
+    }
+
+    fun getSelectedDate(): LocalDate? {
+        return selectedDate?: LocalDate.of(1970, 1, 1)
+    }
     private val dateFormatter = DateTimeFormatter.ofPattern("dd")
 
-    fun hello2(calendarView: WeekCalendarView,exsevenview: Toolbar) {
+    fun weekcalendarcaller(calendarView: WeekCalendarView, exsevenview: Toolbar,islastArgument: Boolean,newbookingfragment: NewBookingFragment=NewBookingFragment()) {
 //        class DayViewContainer(view: View) : ViewContainer(view) {
 //            // Will be set when this container is bound. See the dayBinder.
 //            lateinit var day: WeekDay
@@ -111,6 +127,9 @@ class WeekCalendar {
 //            }
 //
 //
+
+
+
     class DayViewContainer(view: View) : ViewContainer(view) {
     val bind = WeekCalendarDayBinding.bind(view)
     lateinit var day: WeekDay
@@ -132,6 +151,9 @@ class WeekCalendar {
             bind.weekDayText.text = day.date.dayOfWeek.displayText()
 
             val colorRes = if (day.date == selectedDate) {
+                if(islastArgument) {
+                    newbookingfragment.upDateUi();
+                }
                 R.color.example_7_yellow
             } else {
                 R.color.example_7_white
@@ -157,85 +179,9 @@ class WeekCalendar {
         firstDayOfWeekFromLocale(),
     )
         calendarView.scrollToDate(LocalDate.now())
+        if(setDate){
+            selectedDate?.let { calendarView.scrollToDate(it) }
+        }
     }
 
 }
-
-
-
-
-
-
-//
-//class DayViewContainer(view: View) : ViewContainer(view) {
-//    // Will be set when this container is bound. See the dayBinder.
-//    lateinit var day: CalendarDay
-//    val textView =view.findViewById<TextView>(R.id.calendarDayText)
-//
-//    init {
-//        textView.setOnClickListener {
-//            if (day.position == DayPosition.MonthDate) {
-//                if (selectedDate == day.date) {
-//                    selectedDate = null
-//                    calendarView.notifyDayChanged(day)
-//                } else {
-//                    val oldDate = selectedDate
-//                    selectedDate = day.date
-//                    calendarView.notifyDateChanged(day.date)
-//                    oldDate?.let { calendarView.notifyDateChanged(oldDate) }
-//                }
-////                        menuItem.isVisible = selectedDate != null
-//            }
-//        }
-//    }
-//}
-
-//calendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
-//    override fun create(view: View) = DayViewContainer(view)
-//    override fun bind(container: DayViewContainer, data: CalendarDay) {
-//        container.day = data
-//        val day = data
-//        val textView = container.textView
-//        textView.text = day.date.dayOfMonth.toString()
-//        if (day.position == DayPosition.MonthDate) {
-//            // Show the month dates. Remember that views are reused!
-//            textView.visibility = View.VISIBLE
-//            if (day.date == selectedDate) {
-//                // If this is the selected date, show a round background and change the text color.
-//                textView.setTextColor(Color.WHITE)
-//            } else {
-//                // If this is NOT the selected date, remove the background and reset the text color.
-//                textView.setTextColor(Color.BLACK)
-//                textView.background = null
-//            }
-////
-////                    // Add a click listener to the day cell view to handle date selection.
-////                    textView.setOnClickListener {
-////                        selectedDate = day.date
-////                        calendarView.notifyDayChanged(day)
-////                    }
-//        } else {
-//            // Hide in and out dates
-//            textView.visibility = View.INVISIBLE
-//        }
-//    }
-//}
-//
-//val currentMonth = YearMonth.now()
-//val startMonth = currentMonth.minusMonths(100)  // Adjust as needed
-//val endMonth = currentMonth.plusMonths(100)  // Adjust as needed
-//val daysOfWeek = daysOfWeek(firstDayOfWeek = java.time.DayOfWeek.SUNDAY)
-//calendarView.setup(startMonth, endMonth, daysOfWeek.first())
-//calendarView.scrollToMonth(currentMonth)
-//
-//
-//class MonthViewContainer(view: View) : ViewContainer(view) {
-//    val textView = view.findViewById<TextView>(R.id.exTwoHeaderText)
-//}
-//calendarView.monthHeaderBinder =
-//object : MonthHeaderFooterBinder<MonthViewContainer> {
-//    override fun create(view: View) = MonthViewContainer(view)
-//    override fun bind(container: MonthViewContainer, data: CalendarMonth) {
-//        container.textView.text = data.yearMonth.toString()
-//    }
-//}

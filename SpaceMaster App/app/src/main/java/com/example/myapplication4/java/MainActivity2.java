@@ -55,12 +55,20 @@ public class MainActivity2 extends AppCompatActivity {
         calendar = Calendar.getInstance();
         TimePicker timePicker =new TimePicker();
         picker=findViewById(R.id.picker);
+<<<<<<< HEAD
         timePicker.hello(picker,MainActivity2.this);
+=======
+//        timePicker.hello(picker,MainActivity2.this);
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
         WeekCalendar weekCalendar =new WeekCalendar();
         caland=findViewById(R.id.calendarView);
         exsevenview=findViewById(R.id.exSevenToolbar);
+<<<<<<< HEAD
         weekCalendar.hello2(caland,exsevenview);
+=======
+//        weekCalendar.weekcalendarcaller(caland,exsevenview);
+>>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
         DatePicker datePicker = findViewById(R.id.datePicker);
         LocalDate todayDate=LocalDate.now();
@@ -176,21 +184,13 @@ public class MainActivity2 extends AppCompatActivity {
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("duration", duration);
                             hashMapList.add(hashMap1);
-
-
-                            // Log the booking data
-//                            Log.i("abc", "selected_start_time: " + selected_start_time);
-//                            Log.i("abc", "selected_end_time: " + selected_end_time);
-                            Log.i("abc", "Start Time: " + startTime);
-                            Log.i("abc", "End Time: " + endTime);
-//                            Log.i("abc", "Duration: " + duration);
                         }
                     } else {
 
                         // Handle errors
                         Log.e("abc", "Error getting bookings: " + task.getException());
                     }
-                    upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
+//                    upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
 
                 });
     }
@@ -212,12 +212,10 @@ public class MainActivity2 extends AppCompatActivity {
         if(trueOrFalse){
             b.setVisibility(View.INVISIBLE);
             c.setVisibility(View.VISIBLE);
-//            Log.i("abc", "a");
 
         }else{
             b.setVisibility(View.VISIBLE);
             c.setVisibility(View.INVISIBLE);
-//            Log.i("abc", "b");
 
         }
     }
