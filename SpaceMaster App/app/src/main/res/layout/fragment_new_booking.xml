@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".java.NewBookingFragment"
-    android:background="@color/example_1_bg_light">
+    android:background="@color/example_1_bg_light"
+    tools:context=".java.NewBookingFragment">
 
 
     <ImageView
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/image"
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/lecture_hall1_red"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/lecture_hall1_green"
@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/lecture_hall2_green"
@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909" />
 
     <ImageView
         android:id="@+id/lecture_hall2_red"
@@ -82,37 +82,33 @@
         android:src="@drawable/p2_ship_default3"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.909"
+        tools:layout_editor_absoluteX="0dp" />
 
     <nl.joery.timerangepicker.TimeRangePicker
         android:id="@+id/picker"
-        android:layout_width="301dp"
-        android:layout_height="301dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="262dp"
+        android:layout_height="267dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:trp_clockLabelColor="@color/white"
+        app:trp_clockTickColor="@color/white"
         app:trp_endTime="10:00"
         app:trp_maxDurationMinutes="600"
         app:trp_minDurationMinutes="30"
         app:trp_sliderColor="#30FFFFFF"
-        app:trp_clockLabelColor="@color/white"
-        app:trp_clockTickColor="@color/white"
         app:trp_sliderRangeColor="@color/example_7_yellow"
+        app:trp_sliderRangeGradientEnd="@color/yellowHard"
+        app:trp_sliderRangeGradientMiddle="@color/yellowMed"
+        app:trp_sliderRangeGradientStart="@color/yellowSoft"
         app:trp_sliderWidth="30dp"
         app:trp_startTime="8:00"
-        app:trp_sliderRangeGradientStart="@color/yellowSoft"
-        app:trp_sliderRangeGradientMiddle="@color/yellowMed"
-        app:trp_sliderRangeGradientEnd="@color/yellowHard"
+        app:trp_thumbColor="#00FFFFFF"
         app:trp_thumbIconEnd="@drawable/ic_moon"
-        app:trp_thumbIconStart="@drawable/ic_alarm"
-        app:trp_thumbColor="#00FFFFFF"/>
+        app:trp_thumbIconStart="@drawable/ic_alarm" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -162,81 +158,90 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/picker"
         app:layout_constraintEnd_toEndOf="@+id/picker"
         app:layout_constraintStart_toStartOf="@+id/picker"
-        app:layout_constraintTop_toTopOf="@+id/picker"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="@+id/picker">
+
         <LinearLayout
-            android:layout_margin="5dp"
             android:id="@+id/linear_layout_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_alarm"/>
+                android:src="@drawable/ic_alarm" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/white"
-                android:text="Start at"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/start_time"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/white"
-                android:text="8:00"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Start at"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="8:00"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_margin="5dp"
             android:id="@+id/linear_layout_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/ic_moon"/>
+                android:src="@drawable/ic_moon" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/white"
-                    android:text="End at"/>
+                    android:text="End at"
+                    android:textColor="@color/white" />
+
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/end_time"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/white"
-                    android:text="10:00"/>
+                    android:text="10:00"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

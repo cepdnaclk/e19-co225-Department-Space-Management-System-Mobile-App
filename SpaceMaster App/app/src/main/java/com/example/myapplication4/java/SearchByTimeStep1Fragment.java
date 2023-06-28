@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
@@ -38,57 +37,51 @@ public class SearchByTimeStep1Fragment extends Fragment {
 
     private RecyclerView recyclerView;
     private MyAdapter adapter;
-    private PopupWindow popupWindow;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.fragment_search_by_time_step1, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_search_by_time_step1, container, false);
 
-        weekCalendar =new WeekCalendar();
-        caland=rootView.findViewById(R.id.calendarView);
-        exsevenview=rootView.findViewById(R.id.exSevenToolbar);
-        weekCalendar.weekcalendarcaller(caland,exsevenview,false,new NewBookingFragment());
+        weekCalendar = new WeekCalendar();
+        caland = rootView.findViewById(R.id.calendarView);
+        exsevenview = rootView.findViewById(R.id.exSevenToolbar);
+        weekCalendar.weekcalendarcaller(caland, exsevenview, false, new NewBookingFragment());
         weekCalendar.setSelectedDate(LocalDate.now());
 
-        TimePicker timePicker =new TimePicker();
-        picker=rootView.findViewById(R.id.picker);
-        timePicker.hello(picker,false,new NewBookingFragment());
-
+        TimePicker timePicker = new TimePicker();
+        picker = rootView.findViewById(R.id.picker);
+        timePicker.hello(picker, false, new NewBookingFragment());
 
         submitTime = rootView.findViewById(R.id.submitTime);
-        // Initialize the PopupWindow
-        View popupView = inflater.inflate(R.layout.popup_content_layout, null);
-        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        popupWindow.setOutsideTouchable(true);
-        popupView.setOnClickListener(v -> popupWindow.dismiss());
 
         // Configure the RecyclerView
-        recyclerView = popupView.findViewById(R.id.recyclerView);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         submitTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<String> MapList=checkAvailability();
+                List<String> MapList = checkAvailability();
                 adapter = new MyAdapter(MapList, new MyAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(String item) {
                         // Handle the item click event
-                        Toast.makeText(getActivity(), "Clicked item: " + item, Toast.LENGTH_SHORT).show();
-                        Fragment fragment=new NewBookingFragment(weekCalendar.getSelectedDate(),picker.getStartTimeMinutes(),picker.getEndTimeMinutes(),item);
+                        Fragment fragment = new NewBookingFragment(weekCalendar.getSelectedDate(), picker.getStartTimeMinutes(), picker.getEndTimeMinutes(), item);
                         FragmentManager fragmentManager = getParentFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout, fragment);
                         fragmentTransaction.commit();
-                        popupWindow.dismiss();
                     }
                 });
                 recyclerView.setAdapter(adapter);
-                popupWindow.showAsDropDown(v);
-            }});
+            }
+        });
+
         // Inflate the layout for this fragment
         return rootView;
     }
+
     public List<String> checkAvailability() {
         int selected_start_time = picker.getStartTimeMinutes();
         int selected_end_time = picker.getEndTimeMinutes();
@@ -115,5 +108,4 @@ public class SearchByTimeStep1Fragment extends Fragment {
         }
         return lectureHalls;
     }
-
 }

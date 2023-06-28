@@ -25,6 +25,9 @@ import com.example.myapplication5.kotlin.TimePicker;
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -101,7 +104,9 @@ public class NewBookingFragment extends Fragment {
                         Toast.makeText(getContext(),"Please select a lecture hall",Toast.LENGTH_SHORT).show();
                     }else if(!isLectureHallAvailable[Integer.parseInt(selected_lecture_hall.substring(12,13))]){
                         Toast.makeText(getContext(),"Already Booked",Toast.LENGTH_SHORT).show();
-                    }else{
+                    }else if(!isWithinNext30Days(weekCalendar.getSelectedDate(),picker.getStartTimeMinutes())){
+                        Toast.makeText(getContext(),"Select a date within 30 days",Toast.LENGTH_SHORT).show();
+                    }else {
                         FirebaseHandler.localToFirebase(getContext().getApplicationContext(), weekCalendar.getSelectedDate().toString(),
                                 picker.getStartTimeMinutes(), picker.getEndTimeMinutes(), selected_lecture_hall,NewBookingFragment.this);
                     }
@@ -122,6 +127,31 @@ public class NewBookingFragment extends Fragment {
             lecture_hall2_red.setImageAlpha(104);
             lecture_hall2_green.setImageAlpha(104);
             base_image1=rootView.findViewById(R.id.image_areas);
+
+            if(selected_lecture_hall.equals("lecture_hall1")){
+                lecture_hall1_red.setImageAlpha(225);
+                lecture_hall1_green.setImageAlpha(225);
+
+                lecture_hall2_red.setImageAlpha(104);
+                lecture_hall2_green.setImageAlpha(104);
+
+            } else if (selected_lecture_hall.equals("lecture_hall2")) {
+                selected_lecture_hall="lecture_hall2";
+                lecture_hall2_red.setImageAlpha(225);
+                lecture_hall2_green.setImageAlpha(225);
+
+                lecture_hall1_red.setImageAlpha(104);
+                lecture_hall1_green.setImageAlpha(104);
+
+            } else if (selected_lecture_hall.equals("lecture_hall3")) {
+
+            } else if (selected_lecture_hall.equals("lecture_hall4")) {
+
+            } else if (selected_lecture_hall.equals("lecture_hall5")) {
+
+            } else if (selected_lecture_hall.equals("lecture_hall6")) {
+
+            }
             base_image1.setOnTouchListener(new View.OnTouchListener()
             {
                 @Override
@@ -220,5 +250,19 @@ public class NewBookingFragment extends Fragment {
             layout_start_time.setVisibility(View.VISIBLE);
             layout_end_time.setVisibility(View.VISIBLE);
         }
+    }
+    public static boolean isWithinNext30Days(LocalDate date, int minutes) {
+        LocalDateTime now = LocalDateTime.now();
+
+        LocalDateTime givenDateTime = LocalDateTime.of(date, LocalTime.of(0, 0)).plusMinutes(minutes);
+
+        // Check if the selected date and time have already passed today
+        if (now.isAfter(givenDateTime) && now.toLocalDate().isEqual(date)) {
+            return false;
+        }
+
+        long differenceInMinutes = ChronoUnit.MINUTES.between(now, givenDateTime);
+
+        return differenceInMinutes >= 0 && differenceInMinutes <= (30 * 24 * 60);
     }
 }

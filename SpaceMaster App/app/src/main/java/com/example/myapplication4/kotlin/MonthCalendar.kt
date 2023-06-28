@@ -69,6 +69,15 @@ class MonthCalendar {
                         itemTouchHelper.attachToRecyclerView(recyclerView)
                         recyclerView.adapter = adapter;
                         recyclerView.layoutManager = LinearLayoutManager(Context);
+
+//                        val dpValue = 90 // Height of each item in dp
+//                        val itemCount = dataList.size + 3 // Number of items in the list
+//                        val density = Context.resources.displayMetrics.density
+//                        val itemHeightPx = (dpValue * density).toInt()
+//                        val listViewHeightPx = itemHeightPx * itemCount
+//                        val layoutParams = recyclerView.layoutParams
+//                        layoutParams.height = listViewHeightPx
+//                        recyclerView.layoutParams = layoutParams
             }}}
         }
 
@@ -86,14 +95,7 @@ class MonthCalendar {
 
 
 
-//                        val dpValue = 100 // Height of each item in dp
-//                        val itemCount = dataList.size + 1 // Number of items in the list
-//                        val density = Context.resources.displayMetrics.density
-//                        val itemHeightPx = (dpValue * density).toInt()
-//                        val listViewHeightPx = itemHeightPx * itemCount
-//                        val layoutParams = recyclerView.layoutParams
-//                        layoutParams.height = listViewHeightPx
-//                        recyclerView.layoutParams = layoutParams
+
 
                         // If this is the selected date, show a round background and change the text color.
                         container.bind.exOneDayText.setTextColor(ContextCompat.getColor(Context, R.color.example_1_bg))
