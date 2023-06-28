@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingVertical="10dp">
+        android:paddingVertical="0dp">
 
         <TextView
             android:id="@+id/weekDayText"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/example_2_white"
-            android:textSize="12sp"
+            android:textSize="13sp"
             tools:text="Mon" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="15sp"
             tools:text="24" />
     </LinearLayout>
 
