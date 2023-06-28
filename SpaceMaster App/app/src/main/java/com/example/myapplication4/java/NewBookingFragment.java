@@ -171,24 +171,24 @@ public class NewBookingFragment extends Fragment {
             return rootView;
         }
 
-    public void upDateUi() {
+    public void upDateUi(Integer flagStartTimeChange) {
 
 
-        int selected_start_time=picker.getStartTimeMinutes();
-        int selected_end_time=picker.getEndTimeMinutes();
+        int selected_start_time = picker.getStartTimeMinutes();
+        int selected_end_time = picker.getEndTimeMinutes();
         Arrays.fill(isLectureHallAvailable, true);
         List<Map<String, Object>> hashMapList = FirebaseHandler.readLocal(getContext().getApplicationContext());
         for (Map<String, Object> hashMap : hashMapList) {
-            if(weekCalendar.getSelectedDate().toString().equals((String)hashMap.get("date"))){
-                String lecture_hall= (String) hashMap.get("lecture_hall");
+            if (weekCalendar.getSelectedDate().toString().equals((String) hashMap.get("date"))) {
+                String lecture_hall = (String) hashMap.get("lecture_hall");
                 int startTime = Integer.valueOf((String) hashMap.get("start_time"));
                 int endTime = Integer.valueOf((String) hashMap.get("end_time"));
-            if (!((selected_start_time < startTime && selected_end_time <= startTime)
-                    || (selected_start_time >= endTime))) {
-                isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12,13))]=false;
+                if (!((selected_start_time < startTime && selected_end_time <= startTime)
+                        || (selected_start_time >= endTime))) {
+                    isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12, 13))] = false;
 
+                }
             }
-        }
         }
         if (isLectureHallAvailable[1]) {
             lecture_hall1_red.setVisibility(View.INVISIBLE);
@@ -207,8 +207,18 @@ public class NewBookingFragment extends Fragment {
             lecture_hall2_red.setVisibility(View.VISIBLE);
             lecture_hall2_green.setVisibility(View.INVISIBLE);
         }
+        if (flagStartTimeChange==1) {
+            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+            layout_end_time.setVisibility(View.GONE);
+            layout_start_time.setVisibility(View.VISIBLE);
+        } else if(flagStartTimeChange==2) {
+            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            layout_start_time.setVisibility(View.GONE);
+            layout_end_time.setVisibility(View.VISIBLE);
+        } else if (flagStartTimeChange==3) {
 
-        start_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
-        end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            layout_start_time.setVisibility(View.VISIBLE);
+            layout_end_time.setVisibility(View.VISIBLE);
         }
+    }
 }

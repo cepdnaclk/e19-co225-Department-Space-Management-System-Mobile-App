@@ -7,6 +7,9 @@ class TimePicker {
         picker.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
             override fun onStartTimeChange(startTime: TimeRangePicker.Time) {
 //                Log.i("aa", "Start time: " + startTime)
+                if (isLastArgument) {
+                    newbookingfragment.upDateUi(1)
+                }
 
 
 
@@ -14,13 +17,14 @@ class TimePicker {
 
             override fun onEndTimeChange(endTime: TimeRangePicker.Time) {
 //                Log.i("aa", "End time: " + endTime)
+                if (isLastArgument) {
+                    newbookingfragment.upDateUi(2)
+                }
             }
 
             override fun onDurationChange(duration: TimeRangePicker.TimeDuration) {
 //                Log.i("aa", "Duration: " + duration.durationMinutes)
-                if (isLastArgument) {
-                    newbookingfragment.upDateUi()
-                }
+
             }
         })
 
@@ -32,7 +36,9 @@ class TimePicker {
             }
 
             override fun onDragStop(thumb: TimeRangePicker.Thumb) {
-//                inst.trig()
+                if (isLastArgument) {
+                    newbookingfragment.upDateUi(3)
+                }
             }
         })
     }
