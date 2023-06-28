@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
@@ -48,6 +50,11 @@ public class NewBookingFragment extends Fragment {
         private LocalDate date;
         private boolean tempVariable;
         private Button bookButton;
+        private TextView start_time;
+        private TextView end_time;
+    private LinearLayout layout_start_time;
+    private LinearLayout layout_end_time;
+
 
         public NewBookingFragment(){
             tempVariable=false;
@@ -100,6 +107,11 @@ public class NewBookingFragment extends Fragment {
                     }
                 }
             });
+
+            start_time=rootView.findViewById(R.id.start_time);
+            end_time=rootView.findViewById(R.id.end_time);
+            layout_start_time=rootView.findViewById(R.id.linear_layout_start);
+            layout_end_time=rootView.findViewById(R.id.linear_layout_end);
 
             lecture_hall1_red =rootView.findViewById(R.id.lecture_hall1_red);
             lecture_hall1_green =rootView.findViewById(R.id.lecture_hall1_green);
@@ -160,6 +172,8 @@ public class NewBookingFragment extends Fragment {
         }
 
     public void upDateUi() {
+
+
         int selected_start_time=picker.getStartTimeMinutes();
         int selected_end_time=picker.getEndTimeMinutes();
         Arrays.fill(isLectureHallAvailable, true);
@@ -193,5 +207,8 @@ public class NewBookingFragment extends Fragment {
             lecture_hall2_red.setVisibility(View.VISIBLE);
             lecture_hall2_green.setVisibility(View.INVISIBLE);
         }
+
+        start_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+        end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
         }
 }
