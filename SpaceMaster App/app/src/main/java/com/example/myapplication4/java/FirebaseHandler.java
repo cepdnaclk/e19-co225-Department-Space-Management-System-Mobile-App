@@ -9,14 +9,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.common.reflect.TypeToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -170,4 +173,31 @@ public class FirebaseHandler {
                     });
 
         }
+        public static void getAdminDetails(Context context) {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String currentUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            db.collection("admin")
+                    .whereEqualTo("uid", currentUid)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                boolean isAdmin = !task.getResult().isEmpty();
+                                editor.putBoolean("isAdmin", isAdmin);
+                                editor.apply();
+
+                            } else {
+                                // An error occurred while accessing the "admin" collection
+                            }
+                        }
+                    });
+        }
+    public boolean isAdminUser(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isAdmin", false);
+    }
 }
