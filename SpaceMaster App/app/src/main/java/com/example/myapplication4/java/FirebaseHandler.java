@@ -54,6 +54,7 @@ public class FirebaseHandler {
                             String startTime = document.getString("start_time");
                             String endTime = document.getString("end_time");
                             String lecture_hall =document.getString("lecture_hall");
+                            String key=document.getString("key");
 
                             Map<String, Object> hashMap1 = new HashMap<>();
                             hashMap1.put("uid", uid);
@@ -61,6 +62,7 @@ public class FirebaseHandler {
                             hashMap1.put("start_time", startTime);
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("lecture_hall", lecture_hall);
+                            hashMap1.put("key",key);
                             hashMapList.add(hashMap1);
 
                         }
@@ -128,26 +130,44 @@ public class FirebaseHandler {
         data1.put("start_time",Integer.toString(startTime));
         data1.put("end_time",Integer.toString(endTime));
         data1.put("lecture_hall",lecture_hall);
-        spaces.add(data1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        data1.put("key",dateTimeNow+uid);
+        spaces.document(dateTimeNow+uid).set(data1).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(context.getApplicationContext(),"Booking Sucessful",Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                List<Map<String, Object>> hashMapList=readLocal(context);
+                hashMapList.add(data1);
+                String json = new Gson().toJson(hashMapList);
+                editor.putString("data", json);
+                editor.apply();
+                newBookingFragment.upDateUi();
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(context.getApplicationContext(),"Booking Sucessful",Toast.LENGTH_SHORT).show();
-                        SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        List<Map<String, Object>> hashMapList=readLocal(context);
-                        hashMapList.add(data1);
-                        String json = new Gson().toJson(hashMapList);
-                        editor.putString("data", json);
-                        editor.apply();
-                        newBookingFragment.upDateUi();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@Nonnull Exception e) {
+                    public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context.getApplicationContext(),"Booking UnSucessful",Toast.LENGTH_SHORT).show();
-
                     }
                 });
+        }
+        public static void fireBaseRemove(String key,Context context){
+            db = FirebaseFirestore.getInstance();
+            db.collection("spaces").document(key)
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            firebaseToLocal("","",context);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+//                            Log.w(TAG, "Error deleting document", e);
+                        }
+                    });
+
         }
 }

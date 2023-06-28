@@ -5,62 +5,64 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication4.R;
 
 import java.util.List;
 import java.util.Map;
 
-public class CustomAdapter extends BaseAdapter {
-
-    private List<Map<String, Object>> dataList;
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+    private List<Map<String, Object>> items;
     private LayoutInflater inflater;
+    public void removeItem(int position) {
+        FirebaseHandler.fireBaseRemove((String) items.get(position).get("key"), inflater.getContext());
+        items.remove(position);
+        notifyItemRemoved(position);
+    }
 
-    public CustomAdapter(Context context, List<Map<String, Object>> dataList) {
-        this.dataList = dataList;
+    public CustomAdapter(Context context, List<Map<String, Object>> items) {
+        this.items = items;
         inflater = LayoutInflater.from(context);
+
+    }
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = inflater.inflate(R.layout.list_item, parent, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public int getCount() {
-        return dataList.size();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.lecture_hall.setText((String)items.get(position).get("lecture_hall"));
+        holder.start_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("start_time"))));
+        holder.end_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("end_time"))));
     }
 
     @Override
-    public Map<String, Object> getItem(int position) {
-        return dataList.get(position);
+    public int getItemCount() {
+        return items.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;}
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_item, parent, false);
-            holder = new ViewHolder();
-            holder.lecture_hall = convertView.findViewById(R.id.text_view_lecture_hall);
-            holder.start_time = convertView.findViewById(R.id.text_view_start_time);
-            holder.end_time = convertView.findViewById(R.id.text_view_end_time);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        holder.lecture_hall.setText((String)getItem(position).get("lecture_hall"));
-        holder.start_time.setText(convertTimeToAMPM(Integer.valueOf((String) getItem(position).get("start_time"))));
-        holder.end_time.setText(convertTimeToAMPM(Integer.valueOf((String) getItem(position).get("end_time"))));
-
-        return convertView;
-    }
-
-    private static class ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView lecture_hall;
         TextView start_time;
         TextView end_time;
+
+        ViewHolder(View itemView) {
+            super(itemView);
+            lecture_hall = itemView.findViewById(R.id.text_view_lecture_hall);
+            start_time=itemView.findViewById(R.id.text_view_start_time);
+            end_time=itemView.findViewById(R.id.text_view_end_time);
+
+        }
     }
+
+
     public static String convertTimeToAMPM(int timeInMinutes) {
         int hours = timeInMinutes / 60;
         int minutes = timeInMinutes % 60;
