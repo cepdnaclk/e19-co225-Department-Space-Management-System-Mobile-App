@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+    android:background="@color/brown_700"
+        android:paddingVertical="0dp">
+
+        <TextView
+            android:id="@+id/exSevenDayText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/example_7_yellow"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            tools:text="Mon" />
+
+        <TextView
+            android:id="@+id/exSevenDateText"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/blue_800"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            tools:text="22" />
+    </LinearLayout>
+
+

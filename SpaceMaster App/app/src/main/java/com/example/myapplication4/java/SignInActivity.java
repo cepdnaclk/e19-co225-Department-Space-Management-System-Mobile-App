@@ -161,7 +161,7 @@ public class SignInActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser() != null){
-            Intent send = new Intent(SignInActivity.this, MainActivity2.class);
+            Intent send = new Intent(SignInActivity.this, MainActivity.class);
             startActivity(send);
             finish();
         }
