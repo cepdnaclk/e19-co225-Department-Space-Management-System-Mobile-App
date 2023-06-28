@@ -1,6 +1,7 @@
 package com.example.myapplication4.java;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -14,14 +15,21 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
+import com.example.myapplication4.kotlin.KotlinFile2;
 import com.example.myapplication5.kotlin.KotlinFile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.kizitonwose.calendar.view.CalendarView;
+import com.kizitonwose.calendar.view.WeekCalendarView;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -30,10 +38,14 @@ import nl.joery.timerangepicker.TimeRangePicker;
 public class MainActivity2 extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
+    List<Map<String, Object>> hashMapList = new ArrayList<>();
     private TimeRangePicker picker;
+    private WeekCalendarView caland;
+    private Toolbar exsevenview;
     private String selectedDate;
     private FirebaseFirestore db;
     private CollectionReference spaces;
+    private final Object lock = new Object(); // Lock object for synchronization
     Calendar calendar;
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -41,25 +53,39 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
         calendar = Calendar.getInstance();
         KotlinFile kotlinFile=new KotlinFile();
         picker=findViewById(R.id.picker);
         kotlinFile.hello(picker,MainActivity2.this);
 
+        KotlinFile2 kotlinFile2=new KotlinFile2();
+        caland=findViewById(R.id.calendarView);
+        exsevenview=findViewById(R.id.exSevenToolbar);
+        kotlinFile2.hello2(caland,exsevenview);
+
         DatePicker datePicker = findViewById(R.id.datePicker);
-        datePicker.setMaxDate(1686767400000L);
-        datePicker.init(2000, 2, 8, new DatePicker.OnDateChangedListener() {
+        LocalDate todayDate=LocalDate.now();
+        LocalDate maxDate =todayDate.plusDays(30);  // Specify your desired maximum date
+        datePicker.setMinDate(todayDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        datePicker.setMaxDate(maxDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
+
+
+        datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DATE), new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                int selectedYear = year;
-                int selectedMonth = monthOfYear;
-                int selectedDay = dayOfMonth;
-
-                Log.i("abc", "date change");
+                hashMapList.clear();
+                getData(String.format("%04d%02d%02d",year,monthOfYear+1,dayOfMonth),"b");
 //                textView.setText(selectedDate);
+//                Toast.makeText(MainActivity2.this, String.format("%04d%02d%02d",year,monthOfYear+1,dayOfMonth),Toast.LENGTH_SHORT).show();
+                upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
+
             }
         });
+
+
 
 
 
@@ -126,18 +152,19 @@ public class MainActivity2 extends AppCompatActivity {
         data1.put("duration",picker.getDuration().getDurationMinutes());
         spaces.document(selectedDate+" "+uid).set(data1);
     }
-    public void getData(int selected_start_time,int selected_end_time){
+    public void getData(String targetDate,String lecture_hall){
 
         db=FirebaseFirestore.getInstance();
+        // Specify the target date in the format "YYYYMMDD"
+        lecture_hall="lecture_hall1";
 
-        String targetDate = "20230528"; // Specify the target date in the format "YYYYMMDD"
-
-        db.collection("lecture_hall1")
+        db.collection(lecture_hall)
                 .whereEqualTo("date", targetDate)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        boolean trueOrFalse=true;
+                        HashMap<String, Object> hashMap1 = new HashMap<>();
+
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // Retrieve the booking data from each document
                             String uid = document.getString("uid");
@@ -145,32 +172,45 @@ public class MainActivity2 extends AppCompatActivity {
                             int startTime = document.getLong("start_time").intValue();
                             int endTime = document.getLong("end_time").intValue();
                             int duration = document.getLong("duration").intValue();
-                            if(!((selected_start_time<startTime && selected_end_time<=startTime)
-                            ||(selected_start_time>=endTime))){
-                                trueOrFalse=false;
+                            hashMap1.put("uid",uid);
+                            hashMap1.put("date",date);
+                            hashMap1.put("start_time",startTime);
+                            hashMap1.put("end_time", endTime);
+                            hashMap1.put("duration", duration);
+                            hashMapList.add(hashMap1);
 
-                            }
 
                             // Log the booking data
 //                            Log.i("abc", "selected_start_time: " + selected_start_time);
 //                            Log.i("abc", "selected_end_time: " + selected_end_time);
-//                            Log.i("abc", "Start Time: " + startTime);
-//                            Log.i("abc", "End Time: " + endTime);
+                            Log.i("abc", "Start Time: " + startTime);
+                            Log.i("abc", "End Time: " + endTime);
 //                            Log.i("abc", "Duration: " + duration);
                         }
-                        upDateUi(trueOrFalse);
                     } else {
 
                         // Handle errors
                         Log.e("abc", "Error getting bookings: " + task.getException());
                     }
+                    upDateUi(picker.getStartTimeMinutes(),picker.getEndTimeMinutes());
+
                 });
     }
 
 
-    public void upDateUi(Boolean trueOrFalse){
+    public void upDateUi(int selected_start_time,int selected_end_time){
+        boolean trueOrFalse=true;
         ImageView b=findViewById(R.id.image_1);
         ImageView c=findViewById(R.id.image_2);
+        for (Map<String, Object> hashMap : hashMapList) {
+            int startTime= (int) hashMap.get("start_time");
+            int endTime= (int) hashMap.get("end_time");
+            if(!((selected_start_time<startTime && selected_end_time<=startTime)
+                    ||(selected_start_time>=endTime))){
+                trueOrFalse=false;
+
+            }
+        }
         if(trueOrFalse){
             b.setVisibility(View.INVISIBLE);
             c.setVisibility(View.VISIBLE);

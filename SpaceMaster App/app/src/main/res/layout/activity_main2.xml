@@ -26,7 +26,7 @@
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_mask"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -40,6 +40,7 @@
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +53,7 @@
         android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_1"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -67,7 +68,7 @@
         android:alpha="0.4"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_2"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -90,6 +91,7 @@
         android:layout_width="306dp"
         android:layout_height="250dp"
 
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -111,12 +113,47 @@
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         android:textColor="#FF0000"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.064" />
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/exSevenToolbar"
+            android:layout_width="match_parent"
+            android:background="@color/blue_800"
+            android:layout_height="?attr/actionBarSize"
+            android:visibility="visible"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <com.kizitonwose.calendar.view.WeekCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_800"
+            android:visibility="visible"
+            app:cv_dayViewResource="@layout/example_7_calendar_day"
+            app:cv_monthHeaderResource="@layout/example_2_calendar_header"
+            app:layout_constraintBottom_toBottomOf="@+id/picker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
