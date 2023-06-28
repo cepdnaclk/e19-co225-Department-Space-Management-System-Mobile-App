@@ -18,9 +18,6 @@ import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.kotlin.WeekCalendar;
-<<<<<<< HEAD
-import com.kizitonwose.calendar.view.WeekCalendarView;
-=======
 import com.example.myapplication5.kotlin.TimePicker;
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
@@ -31,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 import nl.joery.timerangepicker.TimeRangePicker;
->>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
 
 public class SearchByTimeStep1Fragment extends Fragment {
     private TimeRangePicker picker;
@@ -40,26 +36,14 @@ public class SearchByTimeStep1Fragment extends Fragment {
     private Toolbar exsevenview;
     private Button submitTime;
 
-<<<<<<< HEAD
-    private WeekCalendarView caland;
-    private Toolbar exsevenview;
-=======
     private RecyclerView recyclerView;
     private MyAdapter adapter;
     private PopupWindow popupWindow;
->>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_search_by_time_step1, container, false);
 
-<<<<<<< HEAD
-        WeekCalendar weekCalendar =new WeekCalendar();
-        caland=rootView.findViewById(R.id.calendarView);
-        exsevenview=rootView.findViewById(R.id.exSevenToolbar);
-        weekCalendar.hello2(caland,exsevenview);
-
-=======
         weekCalendar =new WeekCalendar();
         caland=rootView.findViewById(R.id.calendarView);
         exsevenview=rootView.findViewById(R.id.exSevenToolbar);
@@ -102,7 +86,6 @@ public class SearchByTimeStep1Fragment extends Fragment {
                 recyclerView.setAdapter(adapter);
                 popupWindow.showAsDropDown(v);
             }});
->>>>>>> 4a18387d2e60ac2ed596e171540786d2b751c1c2
         // Inflate the layout for this fragment
         return rootView;
     }
