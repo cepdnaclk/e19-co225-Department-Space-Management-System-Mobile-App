@@ -3,7 +3,7 @@ import android.util.Log
 import com.example.myapplication4.java.MainActivity2
 import nl.joery.timerangepicker.TimeRangePicker
 
-class KotlinFile {
+class TimePicker {
     fun hello(picker:nl.joery.timerangepicker.TimeRangePicker,inst:MainActivity2){
         picker.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
             override fun onStartTimeChange(startTime: TimeRangePicker.Time) {

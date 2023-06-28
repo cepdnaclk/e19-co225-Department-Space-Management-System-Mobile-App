@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:background="@color/blue_800"
             android:visibility="visible"
-            app:cv_dayViewResource="@layout/example_7_calendar_day"
+            app:cv_dayViewResource="@layout/week_calendar_day"
             app:cv_monthHeaderResource="@layout/example_2_calendar_header"
             app:layout_constraintBottom_toBottomOf="@+id/picker"
             app:layout_constraintTop_toTopOf="parent"

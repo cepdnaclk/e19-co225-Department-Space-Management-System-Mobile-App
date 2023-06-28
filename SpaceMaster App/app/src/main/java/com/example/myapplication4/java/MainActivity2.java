@@ -15,13 +15,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
-import com.example.myapplication4.kotlin.KotlinFile2;
-import com.example.myapplication5.kotlin.KotlinFile;
+import com.example.myapplication4.kotlin.WeekCalendar;
+import com.example.myapplication5.kotlin.TimePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.kizitonwose.calendar.view.CalendarView;
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
 import java.time.LocalDate;
@@ -31,7 +30,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import nl.joery.timerangepicker.TimeRangePicker;
 
@@ -55,14 +53,14 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         calendar = Calendar.getInstance();
-        KotlinFile kotlinFile=new KotlinFile();
+        TimePicker timePicker =new TimePicker();
         picker=findViewById(R.id.picker);
-        kotlinFile.hello(picker,MainActivity2.this);
+        timePicker.hello(picker,MainActivity2.this);
 
-        KotlinFile2 kotlinFile2=new KotlinFile2();
+        WeekCalendar weekCalendar =new WeekCalendar();
         caland=findViewById(R.id.calendarView);
         exsevenview=findViewById(R.id.exSevenToolbar);
-        kotlinFile2.hello2(caland,exsevenview);
+        weekCalendar.hello2(caland,exsevenview);
 
         DatePicker datePicker = findViewById(R.id.datePicker);
         LocalDate todayDate=LocalDate.now();

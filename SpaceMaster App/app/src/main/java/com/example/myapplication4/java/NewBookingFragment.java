@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication4.R;
-import com.example.myapplication4.kotlin.KotlinFile2;
+import com.example.myapplication4.kotlin.WeekCalendar;
 import com.kizitonwose.calendar.view.WeekCalendarView;
 
 public class NewBookingFragment extends Fragment {
@@ -27,10 +27,10 @@ public class NewBookingFragment extends Fragment {
                 Bundle savedInstanceState) {
             View rootView=inflater.inflate(R.layout.fragment_new_booking, container, false);
 
-            KotlinFile2 kotlinFile2=new KotlinFile2();
+            WeekCalendar weekCalendar =new WeekCalendar();
             caland=rootView.findViewById(R.id.calendarView);
             exsevenview=rootView.findViewById(R.id.exSevenToolbar);
-            kotlinFile2.hello2(caland,exsevenview);
+            weekCalendar.hello2(caland,exsevenview);
 
             // Inflate the layout for this fragment
             return rootView;

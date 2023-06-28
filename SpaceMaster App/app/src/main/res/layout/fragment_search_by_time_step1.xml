@@ -5,60 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
-    tools:context=".java.NewBookingFragment">
-
-
-    <ImageView
-        android:id="@+id/image_areas"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/p2_ship_mask"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/p2_ship_default"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
-
-    <ImageView
-        android:id="@+id/image_1"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:alpha="0.4"
-        android:scaleType="fitCenter"
-        android:src="@drawable/p2_ship_default_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
-
-    <ImageView
-        android:id="@+id/image_2"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:alpha="0.4"
-        android:scaleType="fitCenter"
-        android:src="@drawable/p2_ship_default_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+    tools:context=".java.SearchByTimeStep1Fragment">
 
     <nl.joery.timerangepicker.TimeRangePicker
         android:id="@+id/picker"
@@ -70,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.791"
+        app:layout_constraintVertical_bias="0.394"
         app:trp_endTime="10:00"
         app:trp_maxDurationMinutes="600"
         app:trp_minDurationMinutes="30"
@@ -131,6 +78,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 

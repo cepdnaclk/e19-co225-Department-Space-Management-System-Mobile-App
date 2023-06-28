@@ -4,7 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import com.example.myapplication4.R
-import com.example.myapplication4.databinding.Example7CalendarDayBinding
+import com.example.myapplication4.databinding.WeekCalendarDayBinding
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
@@ -17,7 +17,7 @@ import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
-class KotlinFile2 {
+class WeekCalendar {
     private var selectedDate: LocalDate? = null
     private val dateFormatter = DateTimeFormatter.ofPattern("dd")
 
@@ -112,7 +112,7 @@ class KotlinFile2 {
 //
 //
     class DayViewContainer(view: View) : ViewContainer(view) {
-    val bind = Example7CalendarDayBinding.bind(view)
+    val bind = WeekCalendarDayBinding.bind(view)
     lateinit var day: WeekDay
 
     init {
@@ -128,8 +128,8 @@ class KotlinFile2 {
 
         fun bind(day: WeekDay) {
             this.day = day
-            bind.exSevenDateText.text = dateFormatter.format(day.date)
-            bind.exSevenDayText.text = day.date.dayOfWeek.displayText()
+            bind.weekDateText.text = dateFormatter.format(day.date)
+            bind.weekDayText.text = day.date.dayOfWeek.displayText()
 
             val colorRes = if (day.date == selectedDate) {
                 R.color.example_7_yellow
@@ -137,7 +137,7 @@ class KotlinFile2 {
                 R.color.example_7_white
             }
 //            bind.exSevenDateText.setTextColor(view.context.getColorCompat(colorRes))
-            bind.exSevenSelectedView.isVisible = day.date == selectedDate
+            bind.weekSelectedView.isVisible = day.date == selectedDate
         }
     }
 
