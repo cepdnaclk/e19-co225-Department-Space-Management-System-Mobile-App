@@ -1,13 +1,18 @@
 package com.example.myapplication4.kotlin
 
+import android.content.Context
 import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.core.view.children
 import com.example.myapplication4.R
 import com.example.myapplication4.databinding.MonthCalendarDayBinding
 import com.example.myapplication4.databinding.MonthCalendarHeaderBinding
+import com.example.myapplication4.java.CustomAdapter
+import com.example.myapplication4.java.GetUserBookings
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.DayPosition
@@ -21,8 +26,22 @@ import java.time.LocalDate
 import java.time.YearMonth
 
 class MonthCalendar {
+
     private var selectedDate: LocalDate? = null
-    fun monthcalendarcaller(calendarView: CalendarView) {
+    fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context) {
+
+        val listView: ListView = rootView.findViewById(R.id.list_view)
+
+
+        listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            // Handle item click
+            val selectedItem = listView.getItemAtPosition(position) as String
+            // Perform actions based on the clicked item
+        }
+
+
+
+
         class DayViewContainer(view: View) : ViewContainer(view) {
             // Will be set when this container is bound. See the dayBinder.
             lateinit var day: CalendarDay
@@ -57,6 +76,19 @@ class MonthCalendar {
                     // Show the month dates. Remember that views are reused!
                     container.bind.exOneDayText.visibility = View.VISIBLE
                     if (day.date == selectedDate) {
+                        val dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+                        val adapter = CustomAdapter(Context,dataList)
+                        listView.adapter = adapter
+
+                        val dpValue = 100 // Height of each item in dp
+                        val itemCount = dataList.size + 1 // Number of items in the list
+                        val density = Context.resources.displayMetrics.density
+                        val itemHeightPx = (dpValue * density).toInt()
+                        val listViewHeightPx = itemHeightPx * itemCount
+                        val layoutParams = listView.layoutParams
+                        layoutParams.height = listViewHeightPx
+                        listView.layoutParams = layoutParams
+
                         // If this is the selected date, show a round background and change the text color.
                         container.bind.exOneDayText.setTextColor(Color.WHITE)
                     } else {
