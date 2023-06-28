@@ -1,10 +1,10 @@
 package com.example.myapplication4.kotlin
 
 import android.content.Context
-import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +19,6 @@ import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
-import com.kizitonwose.calendar.sample.shared.displayText
 import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
@@ -58,6 +57,7 @@ class MonthCalendar {
             init {
                 view.setOnClickListener {
                     if (day.position == DayPosition.MonthDate) {
+                        list= GetUserBookings.readUserBookedDates(Context)
                         val oldDate = selectedDate
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
@@ -96,15 +96,18 @@ class MonthCalendar {
 //                        recyclerView.layoutParams = layoutParams
 
                         // If this is the selected date, show a round background and change the text color.
-                        container.bind.exOneDayText.setTextColor(Color.WHITE)
+                        container.bind.exOneDayText.setTextColor(ContextCompat.getColor(Context, R.color.example_1_bg))
+                        container.bind.exOneDayText.setBackgroundResource(R.drawable.example_1_today_bg)
                     } else {
                         // If this is NOT the selected date, remove the background and reset the text color.
-                        container.bind.exOneDayText.setTextColor(Color.BLACK)
+                        container.bind.exOneDayText.setTextColor(ContextCompat.getColor(Context,R.color.example_1_white) )
                         container.bind.exOneDayText.background = null
                     }
                     if (list.contains(day.date.toString()) && day.date!=selectedDate) {
                         // The date is present in the list
-                        container.bind.exOneDayText.setTextColor(Color.YELLOW)
+                        container.bind.exOneDayText.setTextColor(ContextCompat.getColor(Context, R.color.example_1_bg))
+                        container.bind.exOneDayText.setBackgroundResource(R.drawable.example_1_selected_bg)
+
                     }
 
 
@@ -125,14 +128,16 @@ class MonthCalendar {
 
         class MonthViewContainer(view: View) : ViewContainer(view) {
             val binding =MonthCalendarHeaderBinding.bind(view)
-            val textView = view.findViewById<TextView>(R.id.exTwoHeaderText)
+            val textView = view.findViewById<TextView>(R.id.exOneDayText)
+            val textView2 = view.findViewById<TextView>(R.id.exOneMonthText)
             val legendLayout = binding.legendLayout.root
         }
         calendarView.monthHeaderBinder =
         object : MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View) = MonthViewContainer(view)
             override fun bind(container: MonthViewContainer, data: CalendarMonth) {
-                container.textView.text = data.yearMonth.displayText()
+                container.textView.text = data.yearMonth.year.toString()
+                container.textView2.text=data.yearMonth.month.toString()
                 if (container.legendLayout.tag == null) {
                     container.legendLayout.tag = data.yearMonth
                     container.legendLayout.children.map { it as TextView }

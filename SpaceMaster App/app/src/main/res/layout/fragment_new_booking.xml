@@ -48,11 +48,11 @@
 
     <ImageView
         android:id="@+id/lecture_hall1_green"
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:src="@drawable/p2_ship_default_2"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
