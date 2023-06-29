@@ -36,7 +36,7 @@ public class AppointmentsFragment extends Fragment {
 
         MonthCalendar monthCalendar =new MonthCalendar();
         caland=rootView.findViewById(R.id.calendarView);
-        monthCalendar.monthcalendarcaller(caland,rootView,getContext());
+        monthCalendar.monthcalendarcaller(caland,rootView,getContext(),FirebaseHandler.isAdminUser(getContext().getApplicationContext()));
 //
 //        listView = rootView.findViewById(R.id.list_view);
 //        String[] data = {"Item 1", "Item 2", "Item 3","Item 1"};

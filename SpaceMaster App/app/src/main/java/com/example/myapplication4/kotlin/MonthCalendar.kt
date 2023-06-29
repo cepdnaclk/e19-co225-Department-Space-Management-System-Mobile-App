@@ -31,15 +31,15 @@ import java.time.format.DateTimeFormatter
 class MonthCalendar {
 
     private var selectedDate: LocalDate? = LocalDate.now()
-    fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context) {
+    fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context,isAdmin:Boolean) {
 
-        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context)
+        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context,isAdmin)
         if (list.isNotEmpty()) {
             selectedDate = LocalDate.parse(list.first(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         }
 
         var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view)
-        var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+        var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString(),isAdmin)
         var adapter = CustomAdapter(Context, dataList)
         var itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
         itemTouchHelper.attachToRecyclerView(recyclerView)
@@ -57,13 +57,13 @@ class MonthCalendar {
             init {
                 view.setOnClickListener {
                     if (day.position == DayPosition.MonthDate) {
-                        list= GetUserBookings.readUserBookedDates(Context)
+                        list= GetUserBookings.readUserBookedDates(Context,isAdmin)
                         val oldDate = selectedDate
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
                         oldDate?.let { calendarView.notifyDateChanged(oldDate) }
                         itemTouchHelper.attachToRecyclerView(null);
-                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString(),isAdmin)
                         adapter = CustomAdapter(Context, dataList)
                         itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
                         itemTouchHelper.attachToRecyclerView(recyclerView)
