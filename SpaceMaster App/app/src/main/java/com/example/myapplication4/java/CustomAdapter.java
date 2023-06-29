@@ -39,6 +39,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.lecture_hall.setText((String)items.get(position).get("lecture_hall"));
+        holder.user.setText((String)items.get(position).get("user"));
         holder.start_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("start_time"))));
         holder.end_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("end_time"))));
     }
@@ -52,12 +53,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         TextView lecture_hall;
         TextView start_time;
         TextView end_time;
+        TextView user;
 
         ViewHolder(View itemView) {
             super(itemView);
             lecture_hall = itemView.findViewById(R.id.text_view_lecture_hall);
             start_time=itemView.findViewById(R.id.text_view_start_time);
             end_time=itemView.findViewById(R.id.text_view_end_time);
+            user=itemView.findViewById(R.id.text_view_user);
 
         }
     }

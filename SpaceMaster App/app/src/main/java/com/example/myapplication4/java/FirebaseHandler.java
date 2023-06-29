@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.reflect.TypeToken;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,6 +66,7 @@ public class FirebaseHandler {
                             hashMap1.put("start_time", startTime);
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("lecture_hall", lecture_hall);
+                            hashMap1.put("user",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                             hashMap1.put("key",key);
                             hashMapList.add(hashMap1);
 
@@ -196,7 +198,7 @@ public class FirebaseHandler {
                         }
                     });
         }
-    public boolean isAdminUser(Context context) {
+    public static boolean isAdminUser(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean("isAdmin", false);
     }
