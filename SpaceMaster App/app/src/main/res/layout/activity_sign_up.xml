@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".java.SignUpActivity"
-    android:background="@color/example_1_bg">
+    android:background="@drawable/background">
 
     <ImageView
         android:id="@+id/imageView"
@@ -47,12 +47,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#50ffffff"
+        android:background="#50000000"
         android:drawableStart="@drawable/baseline_mail_outline_24"
         android:drawablePadding="20dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:padding="10dp"
+        android:padding="12dp"
         android:textColorHint="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,12 +67,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#50ffffff"
+        android:background="#50000000"
         android:drawableStart="@drawable/baseline_key_24"
         android:drawablePadding="20dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:padding="10dp"
+        android:padding="12dp"
         android:textColorHint="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,23 +80,23 @@
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467"/>
+        app:layout_constraintVertical_bias="0.467" />
 
     <Button
         android:id="@+id/signupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFC300"
+        android:backgroundTint="@color/yellowHard"
         android:drawableEnd="@drawable/baseline_open_in_browser_24"
         android:drawablePadding="20dp"
         android:text="@string/sign_up"
-        android:textSize="15sp"
         android:textColor="@color/example_1_bg"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <View
         android:id="@+id/view"

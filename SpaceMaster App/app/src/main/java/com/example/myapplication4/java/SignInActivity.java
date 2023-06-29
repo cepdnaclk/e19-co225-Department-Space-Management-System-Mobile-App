@@ -102,7 +102,7 @@ public class SignInActivity extends AppCompatActivity {
                             Log.i("abc", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             // Additional operations after successful sign-in
-                            Intent intent = new Intent(SignInActivity.this, MainActivity2.class);
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
