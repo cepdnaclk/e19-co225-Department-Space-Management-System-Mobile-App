@@ -254,36 +254,36 @@ public class NewBookingFragment extends Fragment {
                 }
             }
         }
-//        if (isLectureHallAvailable[1]) {
-//            lecture_hall1_red.setVisibility(View.INVISIBLE);
-//            lecture_hall1_green.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            lecture_hall1_red.setVisibility(View.VISIBLE);
-//            lecture_hall1_green.setVisibility(View.INVISIBLE);
-//        }
-//
-//        if (isLectureHallAvailable[2]) {
-//            lecture_hall2_red.setVisibility(View.INVISIBLE);
-//            lecture_hall2_green.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            lecture_hall2_red.setVisibility(View.VISIBLE);
-//            lecture_hall2_green.setVisibility(View.INVISIBLE);
-//        }
-//        if (flagStartTimeChange==1) {
-//            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
-//            layout_end_time.setVisibility(View.GONE);
-//            layout_start_time.setVisibility(View.VISIBLE);
-//        } else if(flagStartTimeChange==2) {
-//            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
-//            layout_start_time.setVisibility(View.GONE);
-//            layout_end_time.setVisibility(View.VISIBLE);
-//        } else if (flagStartTimeChange==3) {
-//
-//            layout_start_time.setVisibility(View.VISIBLE);
-//            layout_end_time.setVisibility(View.VISIBLE);
-//        }
+        if (isLectureHallAvailable[1]) {
+            lecture_hall1_red.setVisibility(View.INVISIBLE);
+            lecture_hall1_green.setVisibility(View.VISIBLE);
+
+        } else {
+            lecture_hall1_red.setVisibility(View.VISIBLE);
+            lecture_hall1_green.setVisibility(View.INVISIBLE);
+        }
+
+        if (isLectureHallAvailable[2]) {
+            lecture_hall2_red.setVisibility(View.INVISIBLE);
+            lecture_hall2_green.setVisibility(View.VISIBLE);
+
+        } else {
+            lecture_hall2_red.setVisibility(View.VISIBLE);
+            lecture_hall2_green.setVisibility(View.INVISIBLE);
+        }
+        if (flagStartTimeChange==1) {
+            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+            layout_end_time.setVisibility(View.GONE);
+            layout_start_time.setVisibility(View.VISIBLE);
+        } else if(flagStartTimeChange==2) {
+            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            layout_start_time.setVisibility(View.GONE);
+            layout_end_time.setVisibility(View.VISIBLE);
+        } else if (flagStartTimeChange==3) {
+
+            layout_start_time.setVisibility(View.VISIBLE);
+            layout_end_time.setVisibility(View.VISIBLE);
+        }
     }
     public static boolean isWithinNext30Days(LocalDate date, int minutes) {
         LocalDateTime now = LocalDateTime.now();
