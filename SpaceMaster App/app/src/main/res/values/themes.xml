@@ -3,8 +3,11 @@
     <style name="Base.Theme.MyApplication4" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/example_1_bg</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
-
     <style name="Theme.MyApplication4" parent="Base.Theme.MyApplication4" />
+    <style name="SplashScreen" parent="Platform.MaterialComponents.Light">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
 </resources>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-    android:background="@color/example_1_bg"
-tools:context=".java.HomeFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".java.HomeFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -41,6 +40,18 @@ tools:context=".java.HomeFragment">
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.23" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="200sp"
+        android:layout_height="2dp"
+        android:background="#90ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -56,7 +67,7 @@ tools:context=".java.HomeFragment">
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/searchBySpaceButton"
@@ -65,6 +76,8 @@ tools:context=".java.HomeFragment">
         android:backgroundTint="@color/yellowHard"
         android:drawableBottom="@drawable/baseline_dashboard_24"
         android:padding="20sp"
+        android:paddingStart="50sp"
+        android:paddingEnd="50sp"
         android:text="@string/search_by_space"
         android:textColor="@color/example_1_bg"
         android:textSize="30sp"
@@ -72,10 +85,10 @@ tools:context=".java.HomeFragment">
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.48" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/searchByTimeButton"
@@ -84,18 +97,18 @@ tools:context=".java.HomeFragment">
         android:backgroundTint="@color/yellowHard"
         android:drawableBottom="@drawable/baseline_access_time_24"
         android:padding="20sp"
-        android:paddingStart="25sp"
-        android:paddingEnd="25sp"
+        android:paddingStart="55sp"
+        android:paddingEnd="55sp"
         android:text="@string/search_by_time"
         android:textColor="@color/example_1_bg"
         android:textSize="30sp"
         android:textStyle="bold"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/searchBySpaceButton"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.736" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
