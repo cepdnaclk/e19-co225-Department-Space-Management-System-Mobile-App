@@ -46,13 +46,14 @@
         android:textColor="#888888" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:paddingLeft="200dp"
+                android:layout_gravity="right"
                 android:id="@+id/text_view_user"
+                android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#888888"

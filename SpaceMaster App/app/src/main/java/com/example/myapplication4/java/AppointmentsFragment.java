@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.kotlin.MonthCalendar;
@@ -36,6 +37,7 @@ public class AppointmentsFragment extends Fragment {
 
         MonthCalendar monthCalendar =new MonthCalendar();
         caland=rootView.findViewById(R.id.calendarView);
+//        Toast.makeText(getContext(), String.valueOf(FirebaseHandler.isAdminUser(getContext().getApplicationContext())), Toast.LENGTH_SHORT).show();
         monthCalendar.monthcalendarcaller(caland,rootView,getContext(),FirebaseHandler.isAdminUser(getContext().getApplicationContext()));
 //
 //        listView = rootView.findViewById(R.id.list_view);

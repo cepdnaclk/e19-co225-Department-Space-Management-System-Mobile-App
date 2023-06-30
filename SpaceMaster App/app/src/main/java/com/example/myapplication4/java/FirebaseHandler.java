@@ -59,6 +59,7 @@ public class FirebaseHandler {
                             String endTime = document.getString("end_time");
                             String lecture_hall =document.getString("lecture_hall");
                             String key=document.getString("key");
+                            String user=document.getString("user");
 
                             Map<String, Object> hashMap1 = new HashMap<>();
                             hashMap1.put("uid", uid);
@@ -66,7 +67,7 @@ public class FirebaseHandler {
                             hashMap1.put("start_time", startTime);
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("lecture_hall", lecture_hall);
-                            hashMap1.put("user",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                            hashMap1.put("user",user);
                             hashMap1.put("key",key);
                             hashMapList.add(hashMap1);
 
@@ -136,6 +137,7 @@ public class FirebaseHandler {
         data1.put("end_time",Integer.toString(endTime));
         data1.put("lecture_hall",lecture_hall);
         data1.put("key",dateTimeNow+uid);
+        data1.put("user",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         spaces.document(dateTimeNow+uid).set(data1).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

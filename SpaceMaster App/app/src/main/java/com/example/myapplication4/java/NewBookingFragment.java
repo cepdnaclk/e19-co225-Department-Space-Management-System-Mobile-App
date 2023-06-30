@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,6 +58,10 @@ public class NewBookingFragment extends Fragment {
         private TextView end_time;
     private LinearLayout layout_start_time;
     private LinearLayout layout_end_time;
+    private ViewPager viewPager;
+    private ImageSliderAdapter sliderAdapter;
+    private LinearLayout dotsLayout;
+    private List<Integer> imageList;
 
 
         public NewBookingFragment(){
@@ -76,6 +81,32 @@ public class NewBookingFragment extends Fragment {
                 Bundle savedInstanceState) {
             View rootView=inflater.inflate(R.layout.fragment_new_booking, container, false);
 
+            //slider
+            viewPager = rootView.findViewById(R.id.viewPager);
+            dotsLayout = rootView.findViewById(R.id.dotsLayout);
+            imageList = Arrays.asList(R.drawable.p2_ship_default, R.drawable.p2_ship_default_1, R.drawable.p2_ship_default_2,R.drawable.p2_ship_default_2); // Add your image resource IDs here
+            sliderAdapter = new ImageSliderAdapter(requireContext(), imageList, dotsLayout);
+            viewPager.setAdapter(sliderAdapter);
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    updateDots(position);
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    // Empty implementation
+                }
+            });
+
+            //slider-end
+
+
+            //calendar
             weekCalendar =new WeekCalendar();
             if (tempVariable) {
                 weekCalendar.setSelectedDate(date);
@@ -85,7 +116,9 @@ public class NewBookingFragment extends Fragment {
             caland=rootView.findViewById(R.id.calendarView);
             exsevenview=rootView.findViewById(R.id.exSevenToolbar);
             weekCalendar.weekcalendarcaller(caland,exsevenview,true,NewBookingFragment.this);
+            //calendar-end
 
+            //timepicker
             TimePicker timePicker =new TimePicker();
             picker=rootView.findViewById(R.id.picker);
             timePicker.hello(picker,true,NewBookingFragment.this);
@@ -93,6 +126,7 @@ public class NewBookingFragment extends Fragment {
                 picker.setStartTimeMinutes(startTime);
                 picker.setEndTimeMinutes(endTime);
             }
+            //timepicker-end
 
 
 
@@ -220,36 +254,36 @@ public class NewBookingFragment extends Fragment {
                 }
             }
         }
-        if (isLectureHallAvailable[1]) {
-            lecture_hall1_red.setVisibility(View.INVISIBLE);
-            lecture_hall1_green.setVisibility(View.VISIBLE);
-
-        } else {
-            lecture_hall1_red.setVisibility(View.VISIBLE);
-            lecture_hall1_green.setVisibility(View.INVISIBLE);
-        }
-
-        if (isLectureHallAvailable[2]) {
-            lecture_hall2_red.setVisibility(View.INVISIBLE);
-            lecture_hall2_green.setVisibility(View.VISIBLE);
-
-        } else {
-            lecture_hall2_red.setVisibility(View.VISIBLE);
-            lecture_hall2_green.setVisibility(View.INVISIBLE);
-        }
-        if (flagStartTimeChange==1) {
-            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
-            layout_end_time.setVisibility(View.GONE);
-            layout_start_time.setVisibility(View.VISIBLE);
-        } else if(flagStartTimeChange==2) {
-            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
-            layout_start_time.setVisibility(View.GONE);
-            layout_end_time.setVisibility(View.VISIBLE);
-        } else if (flagStartTimeChange==3) {
-
-            layout_start_time.setVisibility(View.VISIBLE);
-            layout_end_time.setVisibility(View.VISIBLE);
-        }
+//        if (isLectureHallAvailable[1]) {
+//            lecture_hall1_red.setVisibility(View.INVISIBLE);
+//            lecture_hall1_green.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            lecture_hall1_red.setVisibility(View.VISIBLE);
+//            lecture_hall1_green.setVisibility(View.INVISIBLE);
+//        }
+//
+//        if (isLectureHallAvailable[2]) {
+//            lecture_hall2_red.setVisibility(View.INVISIBLE);
+//            lecture_hall2_green.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            lecture_hall2_red.setVisibility(View.VISIBLE);
+//            lecture_hall2_green.setVisibility(View.INVISIBLE);
+//        }
+//        if (flagStartTimeChange==1) {
+//            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+//            layout_end_time.setVisibility(View.GONE);
+//            layout_start_time.setVisibility(View.VISIBLE);
+//        } else if(flagStartTimeChange==2) {
+//            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+//            layout_start_time.setVisibility(View.GONE);
+//            layout_end_time.setVisibility(View.VISIBLE);
+//        } else if (flagStartTimeChange==3) {
+//
+//            layout_start_time.setVisibility(View.VISIBLE);
+//            layout_end_time.setVisibility(View.VISIBLE);
+//        }
     }
     public static boolean isWithinNext30Days(LocalDate date, int minutes) {
         LocalDateTime now = LocalDateTime.now();
@@ -264,5 +298,13 @@ public class NewBookingFragment extends Fragment {
         long differenceInMinutes = ChronoUnit.MINUTES.between(now, givenDateTime);
 
         return differenceInMinutes >= 0 && differenceInMinutes <= (30 * 24 * 60);
+    }
+    private void updateDots(int position) {
+        for (int i = 0; i < imageList.size(); i++) {
+            ImageView dot = (ImageView) dotsLayout.getChildAt(i);
+            if (dot != null) {
+                dot.setImageResource(i == position ? R.drawable.indicator_dot_selected : R.drawable.indicator_dot);
+            }
+        }
     }
 }
