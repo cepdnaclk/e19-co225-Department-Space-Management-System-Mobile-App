@@ -1,6 +1,7 @@
 package com.example.myapplication4.java;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,14 +9,24 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +37,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FirebaseHandler.firebaseToLocal("","",getApplicationContext());
         FirebaseHandler.getAdminDetails(getApplicationContext());
+        FirebaseHandler.sendTokenToServer(getApplicationContext());
+
+        String deviceToken = "htiNIHX9RZinTTemCSFnoL:APA91bFX5DsLDiE_zKvLG3qEB7bhz-APS-NlNj3JgSlesVDO1msttbohdE-C1ooX0ZKJvp_GUWhDZEvQAfRwtyszL8_rTtDD1LifJg_hnGxStl8gZ4biBqTpKbLFrKBUBm4Tc51hxTS5";
+
+        RemoteMessage message = new RemoteMessage.Builder(deviceToken)
+                .setMessageId(UUID.randomUUID().toString())
+                .addData("message", "Hello, this is a message!")
+                .build();
+
+        try {
+            FirebaseMessaging.getInstance().send(message);
+            Log.d("FCM", "Message sent successfully.");
+        } catch (IllegalArgumentException e) {
+            Log.e("FCM", "Error sending message: " + e.getMessage(), e);
+        }
+
+
+
+
+
+
+
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
