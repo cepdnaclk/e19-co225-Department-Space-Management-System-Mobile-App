@@ -1,5 +1,6 @@
 package com.example.myapplication4.java;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class HomeFragment extends Fragment {
     private Button searchBySpaceButton;
     private Button searchByTimeButton;
+    private Button signOutButton;
     private ImageButton settingsButton;
     private Boolean isAdmin;
     private DrawerLayout drawerLayout;
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment {
         settingsButton=  rootView.findViewById(R.id.settingsButton);
         searchBySpaceButton = rootView.findViewById(R.id.searchBySpaceButton);
         searchByTimeButton = rootView.findViewById(R.id.searchByTimeButton);
+        signOutButton = rootView.findViewById(R.id.log_out);
 
 
         searchBySpaceButton.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +61,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);
+                signOutButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), SignOutActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
