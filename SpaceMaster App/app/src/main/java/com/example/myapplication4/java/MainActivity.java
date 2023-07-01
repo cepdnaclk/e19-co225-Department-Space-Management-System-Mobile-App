@@ -41,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         String deviceToken = "htiNIHX9RZinTTemCSFnoL:APA91bFX5DsLDiE_zKvLG3qEB7bhz-APS-NlNj3JgSlesVDO1msttbohdE-C1ooX0ZKJvp_GUWhDZEvQAfRwtyszL8_rTtDD1LifJg_hnGxStl8gZ4biBqTpKbLFrKBUBm4Tc51hxTS5";
 
-        RemoteMessage message = new RemoteMessage.Builder(deviceToken)
+                RemoteMessage message = new RemoteMessage.Builder(deviceToken)
                 .setMessageId(UUID.randomUUID().toString())
                 .addData("message", "Hello, this is a message!")
                 .build();
 
         try {
-            FirebaseMessaging.getInstance().send(message);
             Log.d("FCM", "Message sent successfully.");
         } catch (IllegalArgumentException e) {
             Log.e("FCM", "Error sending message: " + e.getMessage(), e);
