@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
+import com.example.myapplication4.java.notificationServer.FCMNotificationSender;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_home, container, false);
+
+
 
         drawerLayout = rootView.findViewById(R.id.drawer_layout);
         navigationView = rootView.findViewById(R.id.navigation_view);

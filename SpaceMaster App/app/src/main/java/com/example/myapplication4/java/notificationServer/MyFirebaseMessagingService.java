@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -17,10 +18,25 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.java.MainActivity;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    private FirebaseFirestore db;
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        saveTokenToSharedPreferences(token);
+    }
+
+    private void saveTokenToSharedPreferences(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("FCMToken", token);
+        editor.apply();
+    }
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // ...
@@ -28,7 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         // Check if message contains a notification payload.
-        Log.i("abc","jhgfc");
+//        Log.i("abc","noti");
         if (remoteMessage.getNotification() != null) {
 //            System.out.println("Message Notification Body: " + remoteMessage.getNotification().getBody());
         }

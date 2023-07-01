@@ -85,7 +85,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
     public List<String> checkAvailability() {
         int selected_start_time = picker.getStartTimeMinutes();
         int selected_end_time = picker.getEndTimeMinutes();
-        boolean[] isLectureHallAvailable = new boolean[6];
+        boolean[] isLectureHallAvailable = new boolean[8];
         Arrays.fill(isLectureHallAvailable, true);
         List<Map<String, Object>> hashMapList = FirebaseHandler.readLocal(getContext().getApplicationContext());
         for (Map<String, Object> hashMap : hashMapList) {

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +16,7 @@ import com.example.myapplication4.R;
 import com.example.myapplication4.databinding.ActivityMainBinding;
 import com.example.myapplication4.java.notificationServer.FCMClient;
 import com.example.myapplication4.java.notificationServer.FCMNotification;
+import com.example.myapplication4.java.notificationServer.FCMNotificationSender;
 import com.example.myapplication4.java.notificationServer.FCMRequest;
 import com.example.myapplication4.java.notificationServer.FCMResponse;
 import com.example.myapplication4.java.notificationServer.FCMService;
@@ -38,41 +40,34 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHandler.getAdminDetails(getApplicationContext());
         FirebaseHandler.sendTokenToServer(getApplicationContext());
 
-        String recipientToken  = "f98L18oiRZilQNm3j0YyWc:APA91bEzdz7Mx42Ci-w2ZJyFCT4IXXJuUDDL9xV-2ptcS6r2jZcHm3SzHCulRDv0w5k5epY9s_1M6DRX6tcZx1FC0pCyLjP9SeTNp8yClpzpEG6wiEgTNzmemi7_ff57vZ3UCIC6X7ew";
-
-        // Set the server key obtained from the Firebase console
-        FCMService fcmService = FCMClient.getClient().create(FCMService.class);
-
-        FCMNotification notification = new FCMNotification("Title", "Mjessage");
-
-        FCMRequest request = new FCMRequest(recipientToken, notification); // Replace with the target device's FCM token
-
-        Call<FCMResponse> call = fcmService.sendNotification(request);
-        call.enqueue(new Callback<FCMResponse>() {
-            @Override
-            public void onResponse(Call<FCMResponse> call, Response<FCMResponse> response) {
-                if (response.isSuccessful()) {
-                    FCMResponse fcmResponse = response.body();
-                    if (fcmResponse != null) {
-                        // Notification sent successfully
-                    }
-                } else {
-                    // Handle error
-                }
-            }
-
-            @Override
-            public void onFailure(Call<FCMResponse> call, Throwable t) {
-                // Handle failure
-            }
-        });
-
-
-
-
-
-
-
+        String recipientToken  = "fYLO8i9ERo6NlW5d3ScGJg:APA91bET2nt9vU-fT2Bl4V-ZdGloqjQorqcpPa_tRXNQxXM4tnXQZB1T6bhXxGHfZJemnkD2twSWg0mNXLkNC2bVordP2cupp9CzlCn0DJ97Mukd-Lm3ahgY2IUuzVSq_gKiBWctA7J8";
+        FCMNotificationSender fcmNotificationSender=new FCMNotificationSender();
+        fcmNotificationSender.sendNotification(recipientToken,"a","b00");
+//        FCMService fcmService = FCMClient.getClient().create(FCMService.class);
+//
+//        FCMNotification notification = new FCMNotification("Title", "Mjessage");
+//
+//        FCMRequest request = new FCMRequest(recipientToken, notification); // Replace with the target device's FCM token
+//
+//        Call<FCMResponse> call = fcmService.sendNotification(request);
+//        call.enqueue(new Callback<FCMResponse>() {
+//            @Override
+//            public void onResponse(Call<FCMResponse> call, Response<FCMResponse> response) {
+//                if (response.isSuccessful()) {
+//                    FCMResponse fcmResponse = response.body();
+//                    if (fcmResponse != null) {
+//                        Log.i("abc","Notification sent Sucessfully");
+//                    }
+//                } else {
+//                    Log.i("abc","Notification sending Failed");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FCMResponse> call, Throwable t) {
+//                // Handle failure
+//            }
+//        });
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
