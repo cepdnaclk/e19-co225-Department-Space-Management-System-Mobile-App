@@ -204,4 +204,13 @@ public class FirebaseHandler {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean("isAdmin", false);
     }
+    public static void sendTokenToServer(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        db = FirebaseFirestore.getInstance();
+        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String,Object> data1 = new HashMap<>();
+        data1.put("uid",uid);
+        data1.put("token",sharedPreferences.getString("FCMToken", ""));
+        db.collection("cloudtokens").document(uid).set(data1);
+    }
 }
