@@ -1,32 +1,31 @@
 package com.example.myapplication4.java;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
+import com.example.myapplication4.java.notificationServer.FCMClient;
+import com.example.myapplication4.java.notificationServer.FCMNotification;
+import com.example.myapplication4.java.notificationServer.FCMRequest;
+import com.example.myapplication4.java.notificationServer.FCMResponse;
+import com.example.myapplication4.java.notificationServer.FCMService;
 
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,20 +38,34 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHandler.getAdminDetails(getApplicationContext());
         FirebaseHandler.sendTokenToServer(getApplicationContext());
 
-        String deviceToken = "htiNIHX9RZinTTemCSFnoL:APA91bFX5DsLDiE_zKvLG3qEB7bhz-APS-NlNj3JgSlesVDO1msttbohdE-C1ooX0ZKJvp_GUWhDZEvQAfRwtyszL8_rTtDD1LifJg_hnGxStl8gZ4biBqTpKbLFrKBUBm4Tc51hxTS5";
+        String recipientToken  = "f98L18oiRZilQNm3j0YyWc:APA91bEzdz7Mx42Ci-w2ZJyFCT4IXXJuUDDL9xV-2ptcS6r2jZcHm3SzHCulRDv0w5k5epY9s_1M6DRX6tcZx1FC0pCyLjP9SeTNp8yClpzpEG6wiEgTNzmemi7_ff57vZ3UCIC6X7ew";
 
-        RemoteMessage message = new RemoteMessage.Builder(deviceToken)
-                .setMessageId(UUID.randomUUID().toString())
-                .addData("message", "Hello, this is a message!")
-                .build();
+        // Set the server key obtained from the Firebase console
+        FCMService fcmService = FCMClient.getClient().create(FCMService.class);
 
-        try {
-            FirebaseMessaging.getInstance().send(message);
-            Log.d("FCM", "Message sent successfully.");
-        } catch (IllegalArgumentException e) {
-            Log.e("FCM", "Error sending message: " + e.getMessage(), e);
-        }
+        FCMNotification notification = new FCMNotification("Title", "Mjessage");
 
+        FCMRequest request = new FCMRequest(recipientToken, notification); // Replace with the target device's FCM token
+
+        Call<FCMResponse> call = fcmService.sendNotification(request);
+        call.enqueue(new Callback<FCMResponse>() {
+            @Override
+            public void onResponse(Call<FCMResponse> call, Response<FCMResponse> response) {
+                if (response.isSuccessful()) {
+                    FCMResponse fcmResponse = response.body();
+                    if (fcmResponse != null) {
+                        // Notification sent successfully
+                    }
+                } else {
+                    // Handle error
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FCMResponse> call, Throwable t) {
+                // Handle failure
+            }
+        });
 
 
 
