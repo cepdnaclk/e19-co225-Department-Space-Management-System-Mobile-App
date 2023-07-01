@@ -16,9 +16,4 @@
     <string name="search_by_time">Time</string>
     <string name="search_by_space">Space</string>
     <string name="or">OR</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_item_1">Menu Item 1</string>
-    <string name="menu_item_2">Menu Item 2</string>
-
 </resources>

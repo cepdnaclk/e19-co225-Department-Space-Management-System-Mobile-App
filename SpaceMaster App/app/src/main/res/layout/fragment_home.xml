@@ -21,18 +21,19 @@
             android:scaleType="centerInside"
             android:src="@drawable/settings_icon" />
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="130dp"
             android:layout_height="98dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="135dp"
-            android:layout_marginTop="58dp"
-            android:layout_marginEnd="146dp"
-            android:layout_marginBottom="574dp"
             android:contentDescription="@string/todo"
             android:src="@drawable/logo" />
 
@@ -40,14 +41,6 @@
             android:id="@+id/textView3"
             android:layout_width="378dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="164dp"
-            android:layout_marginEnd="19dp"
-            android:layout_marginBottom="540dp"
             android:text="@string/SpaceMaster"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -56,30 +49,14 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="198dp"
-            android:layout_height="0dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="103dp"
-            android:layout_marginTop="211dp"
-            android:layout_marginEnd="110dp"
-            android:layout_marginBottom="520dp"
+            android:layout_width="200sp"
+            android:layout_height="2dp"
             android:background="#90ffffff" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="148dp"
-            android:layout_marginTop="224dp"
-            android:layout_marginEnd="154dp"
-            android:layout_marginBottom="473dp"
             android:text="@string/search_by"
             android:textAlignment="center"
             android:textColor="#ffffff"
@@ -90,14 +67,6 @@
             android:id="@+id/searchBySpaceButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="275dp"
-            android:layout_marginEnd="115dp"
-            android:layout_marginBottom="320dp"
             android:backgroundTint="@color/yellowHard"
             android:drawableBottom="@drawable/baseline_dashboard_24"
             android:padding="20sp"
@@ -113,14 +82,6 @@
             android:id="@+id/searchByTimeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="432dp"
-            android:layout_marginEnd="117dp"
-            android:layout_marginBottom="163dp"
             android:backgroundTint="@color/yellowHard"
             android:drawableBottom="@drawable/baseline_access_time_24"
             android:padding="20sp"
@@ -131,15 +92,6 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:cornerRadius="15dp" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp">
 
     </LinearLayout>
 

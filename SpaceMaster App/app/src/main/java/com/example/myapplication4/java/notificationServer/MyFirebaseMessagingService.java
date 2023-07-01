@@ -28,6 +28,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         // Check if message contains a notification payload.
+        Log.i("abc","jhgfc");
         if (remoteMessage.getNotification() != null) {
 //            System.out.println("Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
