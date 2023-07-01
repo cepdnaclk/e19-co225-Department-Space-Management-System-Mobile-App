@@ -19,6 +19,9 @@
             android:name=".java.SignUpActivity"
             android:exported="false" />
         <activity
+            android:name=".java.SignOutActivity"
+            android:exported="false"/>
+        <activity
             android:name=".java.MainActivity"
             android:exported="false" />
         <activity
