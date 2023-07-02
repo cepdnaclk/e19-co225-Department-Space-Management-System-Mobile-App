@@ -21,5 +21,6 @@
     <string name="menu_item_1">Menu Item 1</string>
     <string name="menu_item_2">Menu Item 2</string>
     <string name="log_out">Sign Out</string>
+    <string name="user_name">User Name</string>
 
 </resources>
