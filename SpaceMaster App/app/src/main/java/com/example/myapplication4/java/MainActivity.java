@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseHandler.getAdminDetails(getApplicationContext());
         FirebaseHandler.sendTokenToServer(getApplicationContext());
 
-        String recipientToken  = "fYLO8i9ERo6NlW5d3ScGJg:APA91bET2nt9vU-fT2Bl4V-ZdGloqjQorqcpPa_tRXNQxXM4tnXQZB1T6bhXxGHfZJemnkD2twSWg0mNXLkNC2bVordP2cupp9CzlCn0DJ97Mukd-Lm3ahgY2IUuzVSq_gKiBWctA7J8";
-        FCMNotificationSender fcmNotificationSender=new FCMNotificationSender();
-        fcmNotificationSender.sendNotification(recipientToken,"a","b00");
+//        String recipientToken  = "f_IykCzUT36nsutshHtKc6:APA91bEpFX5fsAc9Pmx3QMJlTPJJXDBwMHg2oVdDgYDMvIjiHKRxi_hQA-jWkHaqC1_H7B0grBulWvK2uop6d8eI1fH2n6049Flg2MnYUJzZ-GzjR3bVevz8GF9yAB0gcqgLN76m77jL";
+//        FCMNotificationSender fcmNotificationSender=new FCMNotificationSender();
+//        fcmNotificationSender.sendNotification(recipientToken,"a","b00");
 //        FCMService fcmService = FCMClient.getClient().create(FCMService.class);
 //
 //        FCMNotification notification = new FCMNotification("Title", "Mjessage");

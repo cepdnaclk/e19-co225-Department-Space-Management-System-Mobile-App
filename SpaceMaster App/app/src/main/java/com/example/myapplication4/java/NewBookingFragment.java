@@ -1,15 +1,12 @@
 package com.example.myapplication4.java;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -119,7 +116,6 @@ public class NewBookingFragment extends Fragment {
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                     updateDots(position);
                     posi=position;
-                    Log.i("abc",String.valueOf(position));
                 }
 
                 @Override
@@ -315,11 +311,11 @@ public class NewBookingFragment extends Fragment {
 
 
         if (flagStartTimeChange==1) {
-            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+            start_time.setText(CalendarAdapter.convertTimeToAMPM(selected_start_time));
             layout_end_time.setVisibility(View.GONE);
             layout_start_time.setVisibility(View.VISIBLE);
         } else if(flagStartTimeChange==2) {
-            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            end_time.setText(CalendarAdapter.convertTimeToAMPM(selected_end_time));
             layout_start_time.setVisibility(View.GONE);
             layout_end_time.setVisibility(View.VISIBLE);
         } else if (flagStartTimeChange==3) {

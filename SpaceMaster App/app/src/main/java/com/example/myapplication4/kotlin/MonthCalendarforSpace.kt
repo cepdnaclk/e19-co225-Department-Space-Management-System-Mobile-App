@@ -28,7 +28,7 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 
-class MonthCalendar {
+class MonthCalendarforSpace {
 
     private var selectedDate: LocalDate? = LocalDate.now()
     fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context,isAdmin:Boolean) {

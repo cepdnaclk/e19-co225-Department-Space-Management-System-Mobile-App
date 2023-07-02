@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
     private Button searchBySpaceButton;
     private Button searchByTimeButton;
     private Button signOutButton;
+    private Button responsiblePersons;
     private ImageButton settingsButton;
     private Boolean isAdmin;
     private DrawerLayout drawerLayout;
@@ -47,6 +48,11 @@ public class HomeFragment extends Fragment {
         searchBySpaceButton = rootView.findViewById(R.id.searchBySpaceButton);
         searchByTimeButton = rootView.findViewById(R.id.searchByTimeButton);
         signOutButton = rootView.findViewById(R.id.log_out);
+        responsiblePersons=rootView.findViewById(R.id.responsiblepersons);
+        if(FirebaseHandler.isAdminUser(getContext())){
+            responsiblePersons.setVisibility(View.GONE);
+        }
+
 
 
         searchBySpaceButton.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +75,16 @@ public class HomeFragment extends Fragment {
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), SignOutActivity.class);
                         startActivity(intent);
+                    }
+                });
+                responsiblePersons.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ResponsiblePersonsFragment responsiblePersonsFragment = new ResponsiblePersonsFragment();
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, responsiblePersonsFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                     }
                 });
             }

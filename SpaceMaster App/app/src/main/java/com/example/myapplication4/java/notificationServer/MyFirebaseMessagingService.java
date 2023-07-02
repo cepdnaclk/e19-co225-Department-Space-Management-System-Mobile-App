@@ -44,7 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         // Check if message contains a notification payload.
-//        Log.i("abc","noti");
+        Log.i("abc","noti");
         if (remoteMessage.getNotification() != null) {
 //            System.out.println("Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
@@ -76,7 +76,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_moon)
-                        .setContentTitle("My new notification")
+                        .setContentTitle("SpaceMaster")
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
@@ -95,4 +95,45 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
+//    private void sendNotification(String body) {
+//        String channelId = "My channel ID";
+//        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//
+//        // Intent for the accept action
+//        Intent acceptIntent = new Intent(this, MainActivity.class);
+//        acceptIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent acceptPendingIntent = PendingIntent.getActivity(this, 0, acceptIntent,
+//                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+//
+//        // Intent for the decline action
+//        Intent declineIntent = new Intent(this, MainActivity.class);
+//        declineIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent declinePendingIntent = PendingIntent.getActivity(this, 0, declineIntent,
+//                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+//
+//        NotificationCompat.Builder notificationBuilder =
+//                new NotificationCompat.Builder(this, channelId)
+//                        .setSmallIcon(R.drawable.ic_moon)
+//                        .setContentText(body)
+//                        .setAutoCancel(true)
+//                        .setSound(defaultSoundUri)
+//                        .addAction(R.drawable.p2_ship_mask, "Accept", acceptPendingIntent)
+//                        .addAction(R.drawable.p2_ship_mask, "Decline", declinePendingIntent);
+//
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        // Since android Oreo notification channel is needed.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationChannel channel = new NotificationChannel(channelId,
+//                    "Channel human readable title",
+//                    NotificationManager.IMPORTANCE_DEFAULT);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+//    }
+
+
 }
