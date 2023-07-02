@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication4.R
 import com.example.myapplication4.databinding.MonthCalendarDayBinding
 import com.example.myapplication4.databinding.MonthCalendarHeaderBinding
-import com.example.myapplication4.java.CustomAdapter
+import com.example.myapplication4.java.CalendarAdapter
 import com.example.myapplication4.java.GetUserBookings
 import com.example.myapplication4.java.SwipeToDeleteCallback
 import com.kizitonwose.calendar.core.CalendarDay
@@ -33,14 +33,15 @@ class MonthCalendar {
     private var selectedDate: LocalDate? = LocalDate.now()
     fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context,isAdmin:Boolean) {
 
-        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context,isAdmin)
+        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context)
         if (list.isNotEmpty()) {
             selectedDate = LocalDate.parse(list.first(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         }
 
         var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view)
-        var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString(),isAdmin)
-        var adapter = CustomAdapter(Context, dataList)
+        var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+        var adapter =
+            CalendarAdapter(Context, dataList)
         var itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
         itemTouchHelper.attachToRecyclerView(recyclerView)
         recyclerView.adapter = adapter;
@@ -57,14 +58,18 @@ class MonthCalendar {
             init {
                 view.setOnClickListener {
                     if (day.position == DayPosition.MonthDate) {
-                        list= GetUserBookings.readUserBookedDates(Context,isAdmin)
+                        list= GetUserBookings.readUserBookedDates(Context)
                         val oldDate = selectedDate
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
                         oldDate?.let { calendarView.notifyDateChanged(oldDate) }
                         itemTouchHelper.attachToRecyclerView(null);
-                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString(),isAdmin)
-                        adapter = CustomAdapter(Context, dataList)
+                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
+                        adapter =
+                            CalendarAdapter(
+                                Context,
+                                dataList
+                            )
                         itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
                         itemTouchHelper.attachToRecyclerView(recyclerView)
                         recyclerView.adapter = adapter;

@@ -3,28 +3,27 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication4.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder>{
     private List<Map<String, Object>> items;
     private LayoutInflater inflater;
     public void removeItem(int position) {
-        FirebaseHandler.fireBaseRemove((String) items.get(position).get("key"), inflater.getContext());
+        FirebaseHandler.fireBaseRemove((String) items.get(position).get("lecture_hall"),(String) items.get(position).get("date"),(String) items.get(position).get("key"), inflater.getContext());
         items.remove(position);
         notifyItemRemoved(position);
     }
 
-    public CustomAdapter(Context context, List<Map<String, Object>> items) {
+    public CalendarAdapter(Context context, List<Map<String, Object>> items) {
         this.items = items;
         inflater = LayoutInflater.from(context);
 
@@ -32,13 +31,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = inflater.inflate(R.layout.list_item, parent, false);
+        View itemView = inflater.inflate(R.layout.list_item_calendar, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.lecture_hall.setText((String)items.get(position).get("lecture_hall"));
+
+        holder.lecture_hall.setText(FirebaseHandler.lectureHallNamingConversion((Integer.parseInt(((String)items.get(position).get("lecture_hall"))))) );
         holder.user.setText((String)items.get(position).get("user"));
         holder.start_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("start_time"))));
         holder.end_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("end_time"))));

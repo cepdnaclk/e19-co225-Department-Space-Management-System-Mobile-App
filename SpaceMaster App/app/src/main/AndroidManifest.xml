@@ -19,6 +19,9 @@
             android:name=".java.SignUpActivity"
             android:exported="false" />
         <activity
+            android:name=".java.SignOutActivity"
+            android:exported="false"/>
+        <activity
             android:name=".java.MainActivity"
             android:exported="false" />
         <activity
@@ -33,6 +36,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".java.notificationServer.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <receiver
+            android:name=".java.notificationServer.NotificationActionReceiver"
+            android:exported="false">
+        </receiver>
     </application>
 
 </manifest>

@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.kotlin.WeekCalendar;
@@ -36,7 +35,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
     private Button submitTime;
 
     private RecyclerView recyclerView;
-    private MyAdapter adapter;
+    private SearchSpaceTimeAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +62,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 List<String> MapList = checkAvailability();
-                adapter = new MyAdapter(MapList, new MyAdapter.OnItemClickListener() {
+                adapter = new SearchSpaceTimeAdapter(MapList, new SearchSpaceTimeAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(String item) {
                         // Handle the item click event
@@ -85,7 +84,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
     public List<String> checkAvailability() {
         int selected_start_time = picker.getStartTimeMinutes();
         int selected_end_time = picker.getEndTimeMinutes();
-        boolean[] isLectureHallAvailable = new boolean[6];
+        boolean[] isLectureHallAvailable = new boolean[8];
         Arrays.fill(isLectureHallAvailable, true);
         List<Map<String, Object>> hashMapList = FirebaseHandler.readLocal(getContext().getApplicationContext());
         for (Map<String, Object> hashMap : hashMapList) {
@@ -95,7 +94,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
                 int endTime = Integer.valueOf((String) hashMap.get("end_time"));
                 if (!((selected_start_time < startTime && selected_end_time <= startTime)
                         || (selected_start_time >= endTime))) {
-                    isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12, 13))] = false;
+                    isLectureHallAvailable[Integer.parseInt(lecture_hall)] = false;
                 }
             }
         }
@@ -103,7 +102,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
 
         for (int i = 1; i < isLectureHallAvailable.length; i++) {
             if (isLectureHallAvailable[i]) {
-                lectureHalls.add("lecture_hall" + i);
+                lectureHalls.add(""+i);
             }
         }
         return lectureHalls;

@@ -1,7 +1,11 @@
 package com.example.myapplication4.java;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,19 +22,22 @@ import java.util.List;
 
 public class ImageSliderAdapter extends PagerAdapter {
     private Context context;
-    private List<Integer> images;
+    private List<List<Integer>> images;
     private LinearLayout dotsLayout;
     private Boolean once=true;
+    private  NewBookingFragment newBookingFragment;
 
-    public ImageSliderAdapter(Context context, List<Integer> images, LinearLayout dotsLayout) {
+
+    public ImageSliderAdapter(Context context, List<List<Integer>> images, LinearLayout dotsLayout,NewBookingFragment newBookingFragment) {
         this.context = context;
         this.images = images;
         this.dotsLayout = dotsLayout;
+        this.newBookingFragment=newBookingFragment;
     }
 
     @Override
     public int getCount() {
-        return images.size();
+        return 4;
     }
 
     @Override
@@ -45,13 +52,25 @@ public class ImageSliderAdapter extends PagerAdapter {
         View slideView = inflater.inflate(R.layout.item_slide, container, false);
 
 
-        ImageView imageViewBackground = slideView.findViewById(R.id.imageViewBackground);
-        ImageView imageViewForeground = slideView.findViewById(R.id.imageViewForeground);
+        ImageView imageViewBase= slideView.findViewById(R.id.imageViewBase);
+        ImageView imageViewImage = slideView.findViewById(R.id.imageViewImage);
+        ImageView imageView1Green= slideView.findViewById(R.id.imageView1Green);
+        ImageView imageView1Red = slideView.findViewById(R.id.imageView1Red);
+        ImageView imageView2Green= slideView.findViewById(R.id.imageView2Green);
+        ImageView imageView2Red = slideView.findViewById(R.id.imageView2Red);
 
 
 //        dotsLayout= slideView.findViewById(R.id.dotsLayout);
-        imageViewBackground.setImageResource(images.get(position));
-        imageViewForeground.setImageResource(R.drawable.p2_ship_default3);
+
+        imageViewBase.setImageResource(images.get(position).get(0));
+        imageViewImage.setImageResource(images.get(position).get(1));
+        imageView1Green.setImageResource(images.get(position).get(2));
+        imageView1Red.setImageResource(images.get(position).get(3));
+        imageView2Green.setImageResource(images.get(position).get(4));
+        imageView2Red.setImageResource(images.get(position).get(5));
+
+        newBookingFragment.updateImageView(position,imageViewBase,imageViewImage,imageView1Green,imageView1Red,imageView2Green,imageView2Red);
+
 
 
         container.addView(slideView);
