@@ -1,11 +1,15 @@
 package com.example.myapplication4.kotlin
 
 import android.content.Context
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +17,9 @@ import com.example.myapplication4.R
 import com.example.myapplication4.databinding.MonthCalendarDayBinding
 import com.example.myapplication4.databinding.MonthCalendarHeaderBinding
 import com.example.myapplication4.java.CalendarAdapter
+import com.example.myapplication4.java.GetFreeTimes
 import com.example.myapplication4.java.GetUserBookings
+import com.example.myapplication4.java.SpaceCalendarAdapter
 import com.example.myapplication4.java.SwipeToDeleteCallback
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
@@ -28,24 +34,33 @@ import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 
-class MonthCalendarforSpace {
+class SpaceCalendar {
 
     private var selectedDate: LocalDate? = LocalDate.now()
-    fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context,isAdmin:Boolean) {
+    fun monthcalendarcaller(calendarView: CalendarView,rootView:View,Context:Context,lecture_hall:String,parentFragmentManager:FragmentManager) {
 
-        var list: MutableList<String> = GetUserBookings.readUserBookedDates(Context)
+        var list: MutableList<String> = GetFreeTimes.getFreedates(Context,lecture_hall)
         if (list.isNotEmpty()) {
             selectedDate = LocalDate.parse(list.first(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         }
 
-        var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view)
-        var dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
-        var adapter =
-            CalendarAdapter(Context, dataList)
-        var itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
-        itemTouchHelper.attachToRecyclerView(recyclerView)
-        recyclerView.adapter = adapter;
-        recyclerView.layoutManager = LinearLayoutManager(Context);
+
+//        var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view_space)
+//        var dataList = GetFreeTimes.getFreeTimesonDate(Context, selectedDate.toString(), lecture_hall)
+//        var adapter = SpaceCalendarAdapter(Context, dataList)
+//        adapter.setOnItemClickListener(object : SpaceCalendarAdapter.OnItemClickListener {
+//            override fun onItemClick(item: MutableMap<String, Any>?) {
+//                Toast.makeText(Context,"dddddd",Toast.LENGTH_SHORT).show();
+//            }
+//        })
+//
+//        recyclerView.adapter = adapter
+//        recyclerView.layoutManager = LinearLayoutManager(Context)
+
+        var recyclerView: RecyclerView = rootView.findViewById(R.id.recycler_view_space)
+        var dataList = GetFreeTimes.getFreeTimesonDate(Context, selectedDate.toString(), lecture_hall)
+
+        RecyclerViewSetupHelper.setupRecyclerView(recyclerView, dataList, Context,parentFragmentManager)
 
 
 
@@ -58,22 +73,26 @@ class MonthCalendarforSpace {
             init {
                 view.setOnClickListener {
                     if (day.position == DayPosition.MonthDate) {
-                        list= GetUserBookings.readUserBookedDates(Context)
+                        list=GetFreeTimes.getFreedates(Context,lecture_hall)
                         val oldDate = selectedDate
                         selectedDate = day.date
                         calendarView.notifyDateChanged(day.date)
                         oldDate?.let { calendarView.notifyDateChanged(oldDate) }
-                        itemTouchHelper.attachToRecyclerView(null);
-                        dataList =  GetUserBookings.readUserBookingsOnDate(Context,selectedDate.toString())
-                        adapter =
-                            CalendarAdapter(
-                                Context,
-                                dataList
-                            )
-                        itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
-                        itemTouchHelper.attachToRecyclerView(recyclerView)
-                        recyclerView.adapter = adapter;
-                        recyclerView.layoutManager = LinearLayoutManager(Context);
+                        dataList =  GetFreeTimes.getFreeTimesonDate(Context,selectedDate.toString(),lecture_hall)
+                        RecyclerViewSetupHelper.setupRecyclerView(recyclerView, dataList, Context,parentFragmentManager)
+//                        adapter =
+//                            SpaceCalendarAdapter(
+//                                Context,
+//                                dataList
+//                            )
+//                        adapter.setOnItemClickListener(object : SpaceCalendarAdapter.OnItemClickListener {
+//                            override fun onItemClick(item: MutableMap<String, Any>?) {
+//                                Toast.makeText(Context,"dddddd",Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//                        adapter.setOnItemClickListener { Log.i("abc", "done"); }
+//                        recyclerView.adapter = adapter;
+//                        recyclerView.layoutManager = LinearLayoutManager(Context);
 
 //                        val dpValue = 90 // Height of each item in dp
 //                        val itemCount = dataList.size + 3 // Number of items in the list
@@ -156,5 +175,6 @@ class MonthCalendarforSpace {
             }
         }
     }
+
 
 }

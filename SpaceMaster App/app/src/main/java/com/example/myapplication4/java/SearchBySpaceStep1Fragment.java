@@ -39,7 +39,7 @@ public class SearchBySpaceStep1Fragment extends Fragment {
             @Override
             public void onItemClick(String item) {
                 // Handle the item click event
-                Fragment fragment = new SearchBySpaceStep2Fragment();
+                Fragment fragment = new SearchBySpaceStep2Fragment(item);
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment);
