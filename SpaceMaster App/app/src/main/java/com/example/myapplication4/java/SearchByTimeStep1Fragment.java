@@ -94,7 +94,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
                 int endTime = Integer.valueOf((String) hashMap.get("end_time"));
                 if (!((selected_start_time < startTime && selected_end_time <= startTime)
                         || (selected_start_time >= endTime))) {
-                    isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12, 13))] = false;
+                    isLectureHallAvailable[Integer.parseInt(lecture_hall)] = false;
                 }
             }
         }
@@ -102,7 +102,7 @@ public class SearchByTimeStep1Fragment extends Fragment {
 
         for (int i = 1; i < isLectureHallAvailable.length; i++) {
             if (isLectureHallAvailable[i]) {
-                lectureHalls.add("lecture_hall" + i);
+                lectureHalls.add(""+i);
             }
         }
         return lectureHalls;

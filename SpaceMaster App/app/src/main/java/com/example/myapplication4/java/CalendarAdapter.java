@@ -37,15 +37,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        List<String> spaceNames = new ArrayList<>();
-        spaceNames.add("Computer Lab 1st Floor");
-        spaceNames.add("Networking Lab 1st Floor");
-        spaceNames.add("Digital Electronics Lab");
-        spaceNames.add("Discussion Room");
-        spaceNames.add("ESCAL");
-        spaceNames.add("Free Space");
-        spaceNames.add("Top Floor Computer Lab");
-        holder.lecture_hall.setText(spaceNames.get(Integer.parseInt(((String)items.get(position).get("lecture_hall")).substring(12,13))-1));
+
+        holder.lecture_hall.setText(FirebaseHandler.lectureHallNamingConversion((Integer.parseInt(((String)items.get(position).get("lecture_hall"))))) );
         holder.user.setText((String)items.get(position).get("user"));
         holder.start_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("start_time"))));
         holder.end_time.setText(convertTimeToAMPM(Integer.valueOf((String) items.get(position).get("end_time"))));

@@ -43,7 +43,7 @@ public class SearchSpaceTimeAdapter extends RecyclerView.Adapter<SearchSpaceTime
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String item = (String) data.get(position);
-        holder.textViewItem.setText(item);
+        holder.textViewItem.setText(FirebaseHandler.lectureHallNamingConversion(Integer.parseInt(item)));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

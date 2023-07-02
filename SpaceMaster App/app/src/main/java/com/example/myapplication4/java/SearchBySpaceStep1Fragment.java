@@ -28,13 +28,13 @@ public class SearchBySpaceStep1Fragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<String> spaceNames = new ArrayList<>();
-        spaceNames.add("Computer Lab 1st Floor");
-        spaceNames.add("Networking Lab 1st Floor");
-        spaceNames.add("Digital Electronics Lab");
-        spaceNames.add("Discussion Room");
-        spaceNames.add("ESCAL");
-        spaceNames.add("Free Space");
-        spaceNames.add("Top Floor Computer Lab");
+        spaceNames.add("1");
+        spaceNames.add("2");
+        spaceNames.add("3");
+        spaceNames.add("4");
+        spaceNames.add("5");
+        spaceNames.add("6");
+        spaceNames.add("7");
         adapter = new SearchSpaceTimeAdapter(spaceNames, new SearchSpaceTimeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String item) {
