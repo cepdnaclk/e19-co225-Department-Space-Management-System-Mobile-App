@@ -4,15 +4,43 @@
 
     <!-- Background Image -->
     <ImageView
-        android:id="@+id/imageViewBackground"
+        android:id="@+id/imageViewBase"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <!-- Foreground Image -->
     <ImageView
-        android:id="@+id/imageViewForeground"
+        android:id="@+id/imageViewImage"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/imageView1Red"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <!-- Foreground Image -->
+    <ImageView
+        android:id="@+id/imageView1Green"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:id="@+id/imageView2Red"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <!-- Foreground Image -->
+    <ImageView
+        android:id="@+id/imageView2Green"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 

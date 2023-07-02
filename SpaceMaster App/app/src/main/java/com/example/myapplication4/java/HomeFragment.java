@@ -16,9 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
+import com.example.myapplication4.java.notificationServer.FCMNotificationSender;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,15 +30,19 @@ public class HomeFragment extends Fragment {
     private Button searchBySpaceButton;
     private Button searchByTimeButton;
     private Button signOutButton;
+    private Button responsiblePersons;
     private ImageButton settingsButton;
     private Boolean isAdmin;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView=inflater.inflate(R.layout.fragment_home, container, false);
+
+
 
         drawerLayout = rootView.findViewById(R.id.drawer_layout);
         navigationView = rootView.findViewById(R.id.navigation_view);
@@ -44,6 +50,15 @@ public class HomeFragment extends Fragment {
         searchBySpaceButton = rootView.findViewById(R.id.searchBySpaceButton);
         searchByTimeButton = rootView.findViewById(R.id.searchByTimeButton);
         signOutButton = rootView.findViewById(R.id.log_out);
+        responsiblePersons=rootView.findViewById(R.id.responsiblepersons);
+        username=rootView.findViewById(R.id.username);
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
+
+        if(FirebaseHandler.isAdminUser(getContext())){
+            responsiblePersons.setVisibility(View.GONE);
+        }
+
 
 
         searchBySpaceButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +81,16 @@ public class HomeFragment extends Fragment {
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), SignOutActivity.class);
                         startActivity(intent);
+                    }
+                });
+                responsiblePersons.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ResponsiblePersonsFragment responsiblePersonsFragment = new ResponsiblePersonsFragment();
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, responsiblePersonsFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                     }
                 });
             }

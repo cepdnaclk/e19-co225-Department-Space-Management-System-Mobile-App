@@ -1,15 +1,12 @@
 package com.example.myapplication4.java;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +34,8 @@ import java.util.Map;
 import nl.joery.timerangepicker.TimeRangePicker;
 
 public class NewBookingFragment extends Fragment {
-    private boolean[] isLectureHallAvailable = new boolean[6];
+    int posi;
+    private boolean[] isLectureHallAvailable = new boolean[8];
         private String selected_lecture_hall="";
         private int startTime;
         private ImageView lecture_hall1_green;
@@ -54,6 +53,7 @@ public class NewBookingFragment extends Fragment {
         private LocalDate date;
         private boolean tempVariable;
         private Button bookButton;
+        private Button notifyButton;
         private TextView start_time;
         private TextView end_time;
     private LinearLayout layout_start_time;
@@ -62,6 +62,16 @@ public class NewBookingFragment extends Fragment {
     private ImageSliderAdapter sliderAdapter;
     private LinearLayout dotsLayout;
     private List<Integer> imageList;
+    private List<List<Integer>> imageListList=new ArrayList<>();
+
+    private ImageView[] imageViewBaseArray=new ImageView[4];
+    private ImageView[] imageViewImageArray=new ImageView[4];
+
+    private ImageView[] imageView1GreenArray=new ImageView[4];
+    private ImageView[] imageView1RedArray=new ImageView[4];
+    private ImageView[] imageView2GreenArray=new ImageView[4];
+    private ImageView[] imageView2RedArray=new ImageView[4];
+    private Boolean[] isset=new Boolean[4];
 
 
         public NewBookingFragment(){
@@ -81,16 +91,31 @@ public class NewBookingFragment extends Fragment {
                 Bundle savedInstanceState) {
             View rootView=inflater.inflate(R.layout.fragment_new_booking, container, false);
 
+            //initialize to false
+            for (int i = 0; i < 4; i++) {
+                isset[i] = false;
+            }
+            //isset
+
             //slider
             viewPager = rootView.findViewById(R.id.viewPager);
             dotsLayout = rootView.findViewById(R.id.dotsLayout);
-            imageList = Arrays.asList(R.drawable.p2_ship_default, R.drawable.p2_ship_default_1, R.drawable.p2_ship_default_2,R.drawable.p2_ship_default_2); // Add your image resource IDs here
-            sliderAdapter = new ImageSliderAdapter(requireContext(), imageList, dotsLayout);
+            imageList = Arrays.asList(R.drawable.a_base,R.drawable.a_image,R.drawable.a_1_green,R.drawable.a_1_red,R.drawable.a_2_green,R.drawable.a_2_red);
+            imageListList.add(imageList);
+            imageList = Arrays.asList(R.drawable.b_base,R.drawable.b_image,R.drawable.b_1_green,R.drawable.b_1_red,R.drawable.b_2_green,R.drawable.b_2_red);
+            imageListList.add(imageList);
+            imageList = Arrays.asList(R.drawable.c_base,R.drawable.c_image,R.drawable.c_1_green,R.drawable.c_1_red,R.drawable.c_2_green,R.drawable.c_2_red);
+            imageListList.add(imageList);
+            imageList = Arrays.asList(R.drawable.d_base,R.drawable.d_image,R.drawable.d_1_green,R.drawable.d_1_red,R.drawable.d_2_green,R.drawable.d_2_red);
+            imageListList.add(imageList);
+
+            sliderAdapter = new ImageSliderAdapter(requireContext(), imageListList, dotsLayout,NewBookingFragment.this);
             viewPager.setAdapter(sliderAdapter);
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                     updateDots(position);
+                    posi=position;
                 }
 
                 @Override
@@ -129,7 +154,7 @@ public class NewBookingFragment extends Fragment {
             //timepicker-end
 
 
-
+            //buttons
             bookButton = rootView.findViewById(R.id.bookbutton);
             bookButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,90 +172,26 @@ public class NewBookingFragment extends Fragment {
                 }
             });
 
+            notifyButton = rootView.findViewById(R.id.notifybutton);
+            notifyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(selected_lecture_hall.equals("")) {
+                        Toast.makeText(getContext(),"Please select a lecture hall",Toast.LENGTH_SHORT).show();
+                    }else if(!isWithinNext30Days(weekCalendar.getSelectedDate(),picker.getStartTimeMinutes())){
+                        Toast.makeText(getContext(),"Select a date within 30 days",Toast.LENGTH_SHORT).show();
+                    }else {
+                        FirebaseHandler.notifyMeFirebase(getContext().getApplicationContext(), weekCalendar.getSelectedDate().toString(),
+                                picker.getStartTimeMinutes(), picker.getEndTimeMinutes(), selected_lecture_hall);
+                    }
+                }
+            });
+            //buttons-end
+
             start_time=rootView.findViewById(R.id.start_time);
             end_time=rootView.findViewById(R.id.end_time);
             layout_start_time=rootView.findViewById(R.id.linear_layout_start);
             layout_end_time=rootView.findViewById(R.id.linear_layout_end);
-
-            lecture_hall1_red =rootView.findViewById(R.id.lecture_hall1_red);
-            lecture_hall1_green =rootView.findViewById(R.id.lecture_hall1_green);
-            lecture_hall2_red =rootView.findViewById(R.id.lecture_hall2_red);
-            lecture_hall2_green =rootView.findViewById(R.id.lecture_hall2_green);
-            lecture_hall1_red.setImageAlpha(104);
-            lecture_hall1_green.setImageAlpha(104);
-            lecture_hall2_red.setImageAlpha(104);
-            lecture_hall2_green.setImageAlpha(104);
-            base_image1=rootView.findViewById(R.id.image_areas);
-
-            if(selected_lecture_hall.equals("lecture_hall1")){
-                lecture_hall1_red.setImageAlpha(225);
-                lecture_hall1_green.setImageAlpha(225);
-
-                lecture_hall2_red.setImageAlpha(104);
-                lecture_hall2_green.setImageAlpha(104);
-
-            } else if (selected_lecture_hall.equals("lecture_hall2")) {
-                selected_lecture_hall="lecture_hall2";
-                lecture_hall2_red.setImageAlpha(225);
-                lecture_hall2_green.setImageAlpha(225);
-
-                lecture_hall1_red.setImageAlpha(104);
-                lecture_hall1_green.setImageAlpha(104);
-
-            } else if (selected_lecture_hall.equals("lecture_hall3")) {
-
-            } else if (selected_lecture_hall.equals("lecture_hall4")) {
-
-            } else if (selected_lecture_hall.equals("lecture_hall5")) {
-
-            } else if (selected_lecture_hall.equals("lecture_hall6")) {
-
-            }
-            base_image1.setOnTouchListener(new View.OnTouchListener()
-            {
-                @Override
-                public boolean onTouch (View v, MotionEvent ev){
-                    final int action = ev.getAction();
-                    // (1)
-                    final int evX = (int) ev.getX();
-                    final int evY = (int) ev.getY();
-                    switch (action) {
-                        case MotionEvent.ACTION_DOWN:
-
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            base_image1.setDrawingCacheEnabled(true);
-                            Bitmap hotspots = Bitmap.createBitmap(base_image1.getDrawingCache());
-                            base_image1.setDrawingCacheEnabled(false);
-                            int tolerance = 100;
-                            int color=hotspots.getPixel(evX, evY);
-                            if(Math.abs(color+3328)<tolerance){
-                                selected_lecture_hall="lecture_hall1";
-                                lecture_hall1_red.setImageAlpha(225);
-                                lecture_hall1_green.setImageAlpha(225);
-
-                                lecture_hall2_red.setImageAlpha(104);
-                                lecture_hall2_green.setImageAlpha(104);
-                            } else if (Math.abs(color+1172700)<tolerance) {
-                                selected_lecture_hall="lecture_hall2";
-                                lecture_hall2_red.setImageAlpha(225);
-                                lecture_hall2_green.setImageAlpha(225);
-
-                                lecture_hall1_red.setImageAlpha(104);
-                                lecture_hall1_green.setImageAlpha(104);
-                            }else if (Math.abs(color+12695861)<tolerance) {
-                                selected_lecture_hall="lecture_hall3";
-                            }else if (Math.abs(color+14438067)<tolerance) {
-                                selected_lecture_hall="lecture_hall4";
-                            }else if (Math.abs(color+8421505)<tolerance) {
-                                selected_lecture_hall="lecture_hall5";
-                            }
-                            Toast.makeText(getContext(), Integer.toString(Color.RED)+" "+Integer.toString(hotspots.getPixel(evX, evY)), Toast.LENGTH_SHORT).show();
-
-                    }
-                    return true;
-                }
-            });
 
             return rootView;
         }
@@ -255,34 +216,129 @@ public class NewBookingFragment extends Fragment {
             }
         }
         if (isLectureHallAvailable[1]) {
-            lecture_hall1_red.setVisibility(View.INVISIBLE);
-            lecture_hall1_green.setVisibility(View.VISIBLE);
+//            Toast.makeText(getContext(),"sss",Toast.LENGTH_SHORT).show();
+            if (isset[0]==true) {
+                imageView1RedArray[0].setVisibility(View.INVISIBLE);
+                imageView1GreenArray[0].setVisibility(View.VISIBLE);
+
+
+            }
 
         } else {
-            lecture_hall1_red.setVisibility(View.VISIBLE);
-            lecture_hall1_green.setVisibility(View.INVISIBLE);
+            if (isset[0]==true) {
+                imageView1RedArray[0].setVisibility(View.VISIBLE);
+                imageView1GreenArray[0].setVisibility(View.INVISIBLE);
+            }
         }
 
         if (isLectureHallAvailable[2]) {
-            lecture_hall2_red.setVisibility(View.INVISIBLE);
-            lecture_hall2_green.setVisibility(View.VISIBLE);
+            if (isset[0]==true) {
+                imageView2RedArray[0].setVisibility(View.INVISIBLE);
+                imageView2GreenArray[0].setVisibility(View.VISIBLE);
+
+
+            }
 
         } else {
-            lecture_hall2_red.setVisibility(View.VISIBLE);
-            lecture_hall2_green.setVisibility(View.INVISIBLE);
+            if (isset[0]==true) {
+                imageView2RedArray[0].setVisibility(View.VISIBLE);
+                imageView2GreenArray[0].setVisibility(View.INVISIBLE);
+            }
         }
+
+        if (isLectureHallAvailable[3]) {
+            if (isset[1]==true) {
+                imageView1RedArray[1].setVisibility(View.INVISIBLE);
+                imageView1GreenArray[1].setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            if (isset[1]==true) {
+                imageView1RedArray[1].setVisibility(View.VISIBLE);
+                imageView1GreenArray[1].setVisibility(View.INVISIBLE);
+            }
+        }
+        if (isLectureHallAvailable[4]) {
+            if (isset[1]==true) {
+                imageView2RedArray[1].setVisibility(View.INVISIBLE);
+                imageView2GreenArray[1].setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            if (isset[1]==true) {
+                imageView2RedArray[1].setVisibility(View.VISIBLE);
+                imageView2GreenArray[1].setVisibility(View.INVISIBLE);
+            }
+        }
+        if (isLectureHallAvailable[5]) {
+            if(isset[2]==true) {
+                imageView1RedArray[2].setVisibility(View.INVISIBLE);
+                imageView1GreenArray[2].setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            if(isset[2]==true) {
+                imageView1RedArray[2].setVisibility(View.VISIBLE);
+                imageView1GreenArray[2].setVisibility(View.INVISIBLE);
+            }
+        }
+        if (isLectureHallAvailable[6]) {
+            if(isset[2]==true) {
+                imageView2RedArray[2].setVisibility(View.INVISIBLE);
+                imageView2GreenArray[2].setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            if(isset[2]==true) {
+                imageView2RedArray[2].setVisibility(View.VISIBLE);
+                imageView2GreenArray[2].setVisibility(View.INVISIBLE);
+            }
+        }
+        if (isLectureHallAvailable[7]) {
+            if(isset[3]==true) {
+                imageView1RedArray[3].setVisibility(View.INVISIBLE);
+                imageView1GreenArray[3].setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            if(isset[3]==true) {
+                imageView1RedArray[3].setVisibility(View.VISIBLE);
+                imageView1GreenArray[3].setVisibility(View.INVISIBLE);
+            }
+    }
+
+
+
+
         if (flagStartTimeChange==1) {
-            start_time.setText(CustomAdapter.convertTimeToAMPM(selected_start_time));
+            start_time.setText(CalendarAdapter.convertTimeToAMPM(selected_start_time));
             layout_end_time.setVisibility(View.GONE);
             layout_start_time.setVisibility(View.VISIBLE);
         } else if(flagStartTimeChange==2) {
-            end_time.setText(CustomAdapter.convertTimeToAMPM(selected_end_time));
+            end_time.setText(CalendarAdapter.convertTimeToAMPM(selected_end_time));
             layout_start_time.setVisibility(View.GONE);
             layout_end_time.setVisibility(View.VISIBLE);
         } else if (flagStartTimeChange==3) {
 
             layout_start_time.setVisibility(View.VISIBLE);
             layout_end_time.setVisibility(View.VISIBLE);
+        }
+
+
+        updateButton();
+
+    }
+
+    public void updateButton(){
+        if(!selected_lecture_hall.equals("")){
+            if(isLectureHallAvailable[Integer.parseInt(selected_lecture_hall.substring(12, 13))]){
+                bookButton.setVisibility(View.VISIBLE);
+                notifyButton.setVisibility(View.GONE);
+            }else{
+                bookButton.setVisibility(View.GONE);
+                notifyButton.setVisibility(View.VISIBLE);
+            }
+
         }
     }
     public static boolean isWithinNext30Days(LocalDate date, int minutes) {
@@ -307,4 +363,98 @@ public class NewBookingFragment extends Fragment {
             }
         }
     }
+
+    public void updateImageView(int position,ImageView imageViewBase,ImageView imageViewImage,ImageView imageView1Green,ImageView imageView1Red,ImageView imageView2Green,ImageView imageView2Red){
+            imageViewBaseArray[position]=imageViewBase;
+            imageViewImageArray[position]=imageViewImage;
+            imageView1GreenArray[position]=imageView1Green;
+            imageView1RedArray[position]=imageView1Red;
+            imageView2GreenArray[position]=imageView2Green;
+            imageView2RedArray[position]=imageView2Red;
+
+            imageView1GreenArray[position].setImageAlpha(104);
+            imageView1RedArray[position].setImageAlpha(104);
+            imageView2GreenArray[position].setImageAlpha(104);
+            imageView2RedArray[position].setImageAlpha(104);
+
+
+        imageViewBaseArray[position].setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch (View v, MotionEvent ev){
+                final int action = ev.getAction();
+                // (1)
+                final int evX = (int) ev.getX();
+                final int evY = (int) ev.getY();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        imageViewBaseArray[position].setDrawingCacheEnabled(true);
+                        Bitmap hotspots = Bitmap.createBitmap(imageViewBaseArray[position].getDrawingCache());
+                        imageViewImageArray[position].setDrawingCacheEnabled(false);
+                        int tolerance = 100;
+                        int color=hotspots.getPixel(evX, evY);
+                        if(Math.abs(color+10215067)<tolerance && isset[0]){
+                            selected_lecture_hall="lecture_hall1";
+                            imageView1GreenArray[0].setImageAlpha(190);
+                            imageView1RedArray[0].setImageAlpha(190);
+
+                            imageView2GreenArray[0].setImageAlpha(104);
+                            imageView2RedArray[0].setImageAlpha(104);
+                        } else if (Math.abs(color+3381208)<tolerance && isset[0]) {
+                            selected_lecture_hall="lecture_hall2";
+                            imageView1GreenArray[0].setImageAlpha(104);
+                            imageView1RedArray[0].setImageAlpha(104);
+
+                            imageView2GreenArray[0].setImageAlpha(190);
+                            imageView2RedArray[0].setImageAlpha(190);
+                        }else if (Math.abs(color+14535570)<tolerance && isset[1]) {
+                            selected_lecture_hall="lecture_hall3";
+                            imageView1GreenArray[1].setImageAlpha(190);
+                            imageView1RedArray[1].setImageAlpha(190);
+
+                            imageView2GreenArray[1].setImageAlpha(104);
+                            imageView2RedArray[1].setImageAlpha(104);
+
+                        }else if (Math.abs(color+4144960)<tolerance && isset[1]) {
+                            selected_lecture_hall="lecture_hall4";
+                            imageView1GreenArray[1].setImageAlpha(104);
+                            imageView1RedArray[1].setImageAlpha(104);
+
+                            imageView2GreenArray[1].setImageAlpha(190);
+                            imageView2RedArray[1].setImageAlpha(190);
+                        }else if (Math.abs(color+16776962)<tolerance && isset[2]) {
+                            selected_lecture_hall="lecture_hall5";
+                            imageView1GreenArray[2].setImageAlpha(190);
+                            imageView1RedArray[2].setImageAlpha(190);
+
+                            imageView2GreenArray[2].setImageAlpha(104);
+                            imageView2RedArray[2].setImageAlpha(104);
+                        }else if (Math.abs(color+1114347)<tolerance && isset[2]) {
+                            selected_lecture_hall="lecture_hall6";
+                            imageView1GreenArray[2].setImageAlpha(104);
+                            imageView1RedArray[2].setImageAlpha(104);
+
+                            imageView2GreenArray[2].setImageAlpha(190);
+                            imageView2RedArray[2].setImageAlpha(190);
+                        }else if (Math.abs(color+2182443)<tolerance && isset[3]) {
+                            selected_lecture_hall="lecture_hall7";
+                            imageView1GreenArray[3].setImageAlpha(190);
+                            imageView1RedArray[3].setImageAlpha(190);
+
+                            imageView2GreenArray[3].setImageAlpha(104);
+                            imageView2RedArray[3].setImageAlpha(104);
+                        }
+                        upDateUi(3);
+
+                }
+                return true;
+            }
+        });
+        isset[position]=true;
+        upDateUi(3);
+    }
+
 }

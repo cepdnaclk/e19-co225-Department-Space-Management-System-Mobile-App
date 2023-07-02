@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication4.R;
 
 import java.util.List;
-import java.util.Map;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class SearchSpaceTimeAdapter extends RecyclerView.Adapter<SearchSpaceTimeAdapter.ViewHolder> {
 
     private List<String> data;
     private OnItemClickListener listener;
 
-    public MyAdapter(List<String> data, OnItemClickListener listener) {
+    public SearchSpaceTimeAdapter(List<String> data, OnItemClickListener listener) {
         this.data = data;
         this.listener = listener;
     }
