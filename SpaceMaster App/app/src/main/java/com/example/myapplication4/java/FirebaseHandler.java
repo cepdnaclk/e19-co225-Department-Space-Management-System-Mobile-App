@@ -345,7 +345,7 @@ public class FirebaseHandler {
                                 // Check for conflicts
                                 if (startTime < end && start < endTime) {
                                     // There is a conflict with the current booking
-                                    Log.i("abc","conflic");
+//                                    Log.i("abc","conflic");
                                     isConflict = true;
                                     break;
                                 }}
