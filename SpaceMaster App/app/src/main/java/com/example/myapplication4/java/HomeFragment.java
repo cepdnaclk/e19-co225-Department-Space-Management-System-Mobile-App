@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication4.R;
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
     private Boolean isAdmin;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +51,10 @@ public class HomeFragment extends Fragment {
         searchByTimeButton = rootView.findViewById(R.id.searchByTimeButton);
         signOutButton = rootView.findViewById(R.id.log_out);
         responsiblePersons=rootView.findViewById(R.id.responsiblepersons);
+        username=rootView.findViewById(R.id.username);
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
+
         if(FirebaseHandler.isAdminUser(getContext())){
             responsiblePersons.setVisibility(View.GONE);
         }
