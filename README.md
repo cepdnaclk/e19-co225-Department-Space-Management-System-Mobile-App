@@ -57,7 +57,7 @@ Users have the ability to edit their reservations. However, if they attempt to c
 The system allows users to cancel their own reservations or enables responsible persons listed in a reservation to cancel it. Users can also check the reservations for a particular space within a selected duration, which can range from past, present, to future dates. The maximum duration for viewing reservations is set to 30 days.
 
 ## SpaceMaster Images Under Construction
-<p align="center"> <img src = "docs/images/signin.jpg" width="250"> <img src = "docs/images/signup.jpg" width="250"></p>
+<p align="center"> <img src = "docs/images/launcher.jpg" width="250"> <img src = "docs/images/signin.jpg" width="250"> <img src = "docs/images/signup.jpg" width="250"> <img src = "docs/images/search.jpg" width="250"> <img src = "docs/images/menu.jpg" width="250"></p>
 
 ## Links
 
