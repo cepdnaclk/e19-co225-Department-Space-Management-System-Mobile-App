@@ -140,7 +140,7 @@
 
         <!-- Add menu items and other content for your side menu here -->
         <ImageView
-            android:id="@+id/user"
+            android:id="@+id/userimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

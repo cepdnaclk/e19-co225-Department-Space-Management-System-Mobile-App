@@ -50,20 +50,24 @@ public class FirebaseHandler {
         spaces = "spaces";
 
         db.collection(spaces)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        Log.e("abc", "Error listening to data changes: " + error);
+                        return;
+                    }
+
+                    if (value != null && !value.isEmpty()) {
                         List<Map<String, Object>> hashMapList = new ArrayList<>();
 
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+                        for (QueryDocumentSnapshot document : value) {
                             // Retrieve the booking data from each document
                             String uid = document.getString("uid");
                             String date = document.getString("date");
                             String startTime = document.getString("start_time");
                             String endTime = document.getString("end_time");
-                            String lecture_hall =document.getString("lecture_hall");
-                            String key=document.getString("key");
-                            String user=document.getString("user");
+                            String lecture_hall = document.getString("lecture_hall");
+                            String key = document.getString("key");
+                            String user = document.getString("user");
                             List<String> uidresponsibles = (List<String>) document.get("uidresponsibles");
 
                             Map<String, Object> hashMap1 = new HashMap<>();
@@ -72,25 +76,20 @@ public class FirebaseHandler {
                             hashMap1.put("start_time", startTime);
                             hashMap1.put("end_time", endTime);
                             hashMap1.put("lecture_hall", lecture_hall);
-                            hashMap1.put("user",user);
-                            hashMap1.put("key",key);
-                            hashMap1.put("uidresponsibles",uidresponsibles);
+                            hashMap1.put("user", user);
+                            hashMap1.put("key", key);
+                            hashMap1.put("uidresponsibles", uidresponsibles);
                             hashMapList.add(hashMap1);
-
                         }
 
                         // Convert the list to JSON and store it in SharedPreferences
                         String json = new Gson().toJson(hashMapList);
                         editor.putString("data", json);
                         editor.apply();
-
-                    } else {
-                        // Handle errors
-                        Log.e("abc", "Error getting bookings: " + task.getException());
                     }
-
                 });
     }
+
     public static List<Map<String, Object>> readLocal(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String jsonData = sharedPreferences.getString("data", null);
@@ -100,23 +99,6 @@ public class FirebaseHandler {
             // Data exists in SharedPreferences
             // Convert JSON string to your desired data structure
             hashMapList = new Gson().fromJson(jsonData, new TypeToken<List<Map<String, Object>>>(){}.getType());
-//            Toast.makeText(context.getApplicationContext(), "xss",Toast.LENGTH_SHORT).show();
-
-//            // Now you can access and use the retrieved data
-//            for (Map<String, Object> hashMap : hashMapList) {
-////                // Access the values from the hashMap
-//                String uid = (String) hashMap.get("uid");
-//                String date = (String) hashMap.get("date");
-//                String startTime = (String) hashMap.get("start_time");
-//                String endTime = (String) hashMap.get("end_time");
-//                String lecture_hall = (String) hashMap.get("lecture_hall");
-//
-//                data.add(uid+date+startTime+endTime+lecture_hall);
-//            }
-//        } else {
-//            // Data doesn't exist in SharedPreferences
-//            // Handle the case when no data is found
-//            // ...
         }
         return hashMapList;
 
@@ -149,13 +131,13 @@ public class FirebaseHandler {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(context.getApplicationContext(),"Booking Sucessful",Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                List<Map<String, Object>> hashMapList=readLocal(context);
-                hashMapList.add(data1);
-                String json = new Gson().toJson(hashMapList);
-                editor.putString("data", json);
-                editor.apply();
+//                SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                List<Map<String, Object>> hashMapList=readLocal(context);
+//                hashMapList.add(data1);
+//                String json = new Gson().toJson(hashMapList);
+//                editor.putString("data", json);
+//                editor.apply();
                 newBookingFragment.upDateUi(3);
             }
         })
@@ -213,7 +195,6 @@ public class FirebaseHandler {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            firebaseToLocal("","",context);
                             findNotifiers(context,date,lecture_hall);
 //                            Log.i("abc",date+lecture_hall);
                         }
@@ -232,38 +213,39 @@ public class FirebaseHandler {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         db.collection("admin")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<HashMap<String, String>> adminList = new ArrayList<>();
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+                        // Handle any errors
+                        Log.e("abc", "Error listening to admin data changes: " + error);
+                        return;
+                    }
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                HashMap<String, String> adminMap = new HashMap<>();
-                                String uid = document.getString("uid");
-                                String name = document.getString("name");
-                                adminMap.put("checked","false");
-                                adminMap.put("uid", uid);
-                                adminMap.put("name", name);
-                                adminList.add(adminMap);
-                            }
+                    if (value != null && !value.isEmpty()) {
+                        List<HashMap<String, String>> adminList = new ArrayList<>();
 
-                            // Convert the adminList to a JSON string
-                            if(getAdminListSize(context)!=adminList.size()) {
-                                Gson gson = new Gson();
-                                String adminJson = gson.toJson(adminList);
+                        for (QueryDocumentSnapshot document : value) {
+                            HashMap<String, String> adminMap = new HashMap<>();
+                            String uid = document.getString("uid");
+                            String name = document.getString("name");
+                            adminMap.put("checked", "false");
+                            adminMap.put("uid", uid);
+                            adminMap.put("name", name);
+                            adminList.add(adminMap);
+                        }
 
-                                // Save the adminJson to SharedPreferences
-                                editor.putString("adminList", adminJson);
-                                editor.apply();
-                            }
-                        } else {
-                            // Handle any errors
+                        // Convert the adminList to a JSON string
+                        if(getAdminListSize(context)!=adminList.size()) {
+                            Gson gson = new Gson();
+                            String adminJson = gson.toJson(adminList);
+
+                            // Save the adminJson to SharedPreferences
+                            editor.putString("adminList", adminJson);
+                            editor.apply();
                         }
                     }
                 });
     }
+
 
 
         public static List<HashMap<String, String>> readAdminDetails(Context context){
@@ -396,5 +378,16 @@ public class FirebaseHandler {
                     }
 
                 });
+    }
+    public static String lectureHallNamingConversion(int position){
+        List<String> spaceNames = new ArrayList<>();
+        spaceNames.add("Computer Lab 1st Floor");
+        spaceNames.add("Networking Lab 1st Floor");
+        spaceNames.add("Digital Electronics Lab");
+        spaceNames.add("Discussion Room");
+        spaceNames.add("ESCAL");
+        spaceNames.add("Free Space");
+        spaceNames.add("Top Floor Computer Lab");
+        return spaceNames.get(position-1);
     }
 }

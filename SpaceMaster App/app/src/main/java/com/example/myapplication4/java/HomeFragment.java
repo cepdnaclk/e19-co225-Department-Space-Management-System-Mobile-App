@@ -55,6 +55,8 @@ public class HomeFragment extends Fragment {
         username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
 
+
+
         if(FirebaseHandler.isAdminUser(getContext())){
             responsiblePersons.setVisibility(View.GONE);
         }

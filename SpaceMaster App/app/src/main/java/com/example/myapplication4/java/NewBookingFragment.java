@@ -38,11 +38,6 @@ public class NewBookingFragment extends Fragment {
     private boolean[] isLectureHallAvailable = new boolean[8];
         private String selected_lecture_hall="";
         private int startTime;
-        private ImageView lecture_hall1_green;
-        private ImageView lecture_hall1_red;
-    private ImageView lecture_hall2_green;
-    private ImageView lecture_hall2_red;
-        private ImageView base_image1;
     private int endTime;
 
     private WeekCalendar weekCalendar;
@@ -111,6 +106,9 @@ public class NewBookingFragment extends Fragment {
 
             sliderAdapter = new ImageSliderAdapter(requireContext(), imageListList, dotsLayout,NewBookingFragment.this);
             viewPager.setAdapter(sliderAdapter);
+            if(tempVariable) {
+                viewPager.setCurrentItem((Integer.parseInt(selected_lecture_hall)-1)/2);
+            }
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -161,7 +159,7 @@ public class NewBookingFragment extends Fragment {
                 public void onClick(View v) {
                     if(selected_lecture_hall.equals("")) {
                         Toast.makeText(getContext(),"Please select a lecture hall",Toast.LENGTH_SHORT).show();
-                    }else if(!isLectureHallAvailable[Integer.parseInt(selected_lecture_hall.substring(12,13))]){
+                    }else if(!isLectureHallAvailable[Integer.parseInt(selected_lecture_hall)]){
                         Toast.makeText(getContext(),"Already Booked",Toast.LENGTH_SHORT).show();
                     }else if(!isWithinNext30Days(weekCalendar.getSelectedDate(),picker.getStartTimeMinutes())){
                         Toast.makeText(getContext(),"Select a date within 30 days",Toast.LENGTH_SHORT).show();
@@ -210,7 +208,7 @@ public class NewBookingFragment extends Fragment {
                 int endTime = Integer.valueOf((String) hashMap.get("end_time"));
                 if (!((selected_start_time < startTime && selected_end_time <= startTime)
                         || (selected_start_time >= endTime))) {
-                    isLectureHallAvailable[Integer.parseInt(lecture_hall.substring(12, 13))] = false;
+                    isLectureHallAvailable[Integer.parseInt(lecture_hall)] = false;
 
                 }
             }
@@ -326,12 +324,11 @@ public class NewBookingFragment extends Fragment {
 
 
         updateButton();
-
     }
 
     public void updateButton(){
         if(!selected_lecture_hall.equals("")){
-            if(isLectureHallAvailable[Integer.parseInt(selected_lecture_hall.substring(12, 13))]){
+            if(isLectureHallAvailable[Integer.parseInt(selected_lecture_hall)]){
                 bookButton.setVisibility(View.VISIBLE);
                 notifyButton.setVisibility(View.GONE);
             }else{
@@ -397,21 +394,21 @@ public class NewBookingFragment extends Fragment {
                         int tolerance = 100;
                         int color=hotspots.getPixel(evX, evY);
                         if(Math.abs(color+10215067)<tolerance && isset[0]){
-                            selected_lecture_hall="lecture_hall1";
+                            selected_lecture_hall="1";
                             imageView1GreenArray[0].setImageAlpha(190);
                             imageView1RedArray[0].setImageAlpha(190);
 
                             imageView2GreenArray[0].setImageAlpha(104);
                             imageView2RedArray[0].setImageAlpha(104);
                         } else if (Math.abs(color+3381208)<tolerance && isset[0]) {
-                            selected_lecture_hall="lecture_hall2";
+                            selected_lecture_hall="2";
                             imageView1GreenArray[0].setImageAlpha(104);
                             imageView1RedArray[0].setImageAlpha(104);
 
                             imageView2GreenArray[0].setImageAlpha(190);
                             imageView2RedArray[0].setImageAlpha(190);
                         }else if (Math.abs(color+14535570)<tolerance && isset[1]) {
-                            selected_lecture_hall="lecture_hall3";
+                            selected_lecture_hall="3";
                             imageView1GreenArray[1].setImageAlpha(190);
                             imageView1RedArray[1].setImageAlpha(190);
 
@@ -419,28 +416,28 @@ public class NewBookingFragment extends Fragment {
                             imageView2RedArray[1].setImageAlpha(104);
 
                         }else if (Math.abs(color+4144960)<tolerance && isset[1]) {
-                            selected_lecture_hall="lecture_hall4";
+                            selected_lecture_hall="4";
                             imageView1GreenArray[1].setImageAlpha(104);
                             imageView1RedArray[1].setImageAlpha(104);
 
                             imageView2GreenArray[1].setImageAlpha(190);
                             imageView2RedArray[1].setImageAlpha(190);
                         }else if (Math.abs(color+16776962)<tolerance && isset[2]) {
-                            selected_lecture_hall="lecture_hall5";
+                            selected_lecture_hall="5";
                             imageView1GreenArray[2].setImageAlpha(190);
                             imageView1RedArray[2].setImageAlpha(190);
 
                             imageView2GreenArray[2].setImageAlpha(104);
                             imageView2RedArray[2].setImageAlpha(104);
                         }else if (Math.abs(color+1114347)<tolerance && isset[2]) {
-                            selected_lecture_hall="lecture_hall6";
+                            selected_lecture_hall="6";
                             imageView1GreenArray[2].setImageAlpha(104);
                             imageView1RedArray[2].setImageAlpha(104);
 
                             imageView2GreenArray[2].setImageAlpha(190);
                             imageView2RedArray[2].setImageAlpha(190);
                         }else if (Math.abs(color+2182443)<tolerance && isset[3]) {
-                            selected_lecture_hall="lecture_hall7";
+                            selected_lecture_hall="7";
                             imageView1GreenArray[3].setImageAlpha(190);
                             imageView1RedArray[3].setImageAlpha(190);
 
@@ -455,6 +452,54 @@ public class NewBookingFragment extends Fragment {
         });
         isset[position]=true;
         upDateUi(3);
+
+        if(tempVariable) {
+            tempVariable=false;
+            if(selected_lecture_hall.equals("1")){
+                imageView1GreenArray[0].setImageAlpha(190);
+                imageView1RedArray[0].setImageAlpha(190);
+                imageView2GreenArray[0].setImageAlpha(104);
+                imageView2RedArray[0].setImageAlpha(104);
+
+            } else if (selected_lecture_hall.equals("2")) {
+                imageView1GreenArray[0].setImageAlpha(104);
+                imageView1RedArray[0].setImageAlpha(104);
+                imageView2GreenArray[0].setImageAlpha(190);
+                imageView2RedArray[0].setImageAlpha(190);
+
+            } else if (selected_lecture_hall.equals("3")) {
+                imageView1GreenArray[1].setImageAlpha(190);
+                imageView1RedArray[1].setImageAlpha(190);
+                imageView2GreenArray[1].setImageAlpha(104);
+                imageView2RedArray[1].setImageAlpha(104);
+
+            } else if (selected_lecture_hall.equals("4")) {
+                imageView1GreenArray[1].setImageAlpha(104);
+                imageView1RedArray[1].setImageAlpha(104);
+                imageView2GreenArray[1].setImageAlpha(190);
+                imageView2RedArray[1].setImageAlpha(190);
+
+            }else if (selected_lecture_hall.equals("5")) {
+                imageView1GreenArray[2].setImageAlpha(190);
+                imageView1RedArray[2].setImageAlpha(190);
+                imageView2GreenArray[2].setImageAlpha(104);
+                imageView2RedArray[2].setImageAlpha(104);
+
+            }else if (selected_lecture_hall.equals("6")) {
+                imageView1GreenArray[2].setImageAlpha(104);
+                imageView1RedArray[2].setImageAlpha(104);
+                imageView2GreenArray[2].setImageAlpha(190);
+                imageView2RedArray[2].setImageAlpha(190);
+
+            }else if (selected_lecture_hall.equals("7")) {
+                imageView1GreenArray[3].setImageAlpha(190);
+                imageView1RedArray[3].setImageAlpha(190);
+                imageView2GreenArray[3].setImageAlpha(104);
+                imageView2RedArray[3].setImageAlpha(104);
+
+            }
+        }
     }
+
 
 }
