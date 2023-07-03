@@ -47,6 +47,7 @@ public class ResponsiblePersonAdapter extends RecyclerView.Adapter<ResponsiblePe
         // Handle checkbox clicks
         holder.checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Update the checked state in your data structure (e.g., responsiblePersonList)
+
             responsiblePersonList.get(position).put("checked", isChecked ? "true" : "false");
 
             SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);

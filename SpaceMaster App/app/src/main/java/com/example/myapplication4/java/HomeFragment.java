@@ -21,6 +21,11 @@ import android.widget.Toast;
 
 import com.example.myapplication4.R;
 import com.example.myapplication4.java.notificationServer.FCMNotificationSender;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,7 +63,7 @@ public class HomeFragment extends Fragment {
         username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         //image begin
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 //        FirebaseUser user = firebaseAuth.getCurrentUser();
 //        if (user != null) {
 //            String photoUrl = user.getPhotoUrl().toString();
@@ -76,9 +81,9 @@ public class HomeFragment extends Fragment {
         //image end
 
 
-//        if(FirebaseHandler.isAdminUser(getContext())){
-//            responsiblePersons.setVisibility(View.GONE);
-//        }
+        if(FirebaseHandler.isAdminUser(getContext())){
+            responsiblePersons.setVisibility(View.GONE);
+        }
 
 
 
@@ -94,12 +99,24 @@ public class HomeFragment extends Fragment {
         });
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if(FirebaseHandler.isAdminUser(getContext())){
+                    responsiblePersons.setVisibility(View.GONE);
+                }
+
                 drawerLayout.openDrawer(GravityCompat.START);
                 signOutButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                        firebaseAuth.signOut();
+
+                        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .build();
+                        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+                        googleSignInClient.signOut();
                         Intent intent = new Intent(getActivity(), SignOutActivity.class);
                         startActivity(intent);
                     }
