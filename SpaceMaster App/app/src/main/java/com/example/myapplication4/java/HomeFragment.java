@@ -119,6 +119,7 @@ public class HomeFragment extends Fragment {
                         googleSignInClient.signOut();
                         Intent intent = new Intent(getActivity(), SignOutActivity.class);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                 });
                 responsiblePersons.setOnClickListener(new View.OnClickListener() {
