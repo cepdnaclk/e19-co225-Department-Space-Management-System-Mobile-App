@@ -94,6 +94,9 @@ public class HomeFragment extends Fragment {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(FirebaseHandler.isAdminUser(getContext())){
+                    responsiblePersons.setVisibility(View.GONE);
+                }
                 drawerLayout.openDrawer(GravityCompat.START);
                 signOutButton.setOnClickListener(new View.OnClickListener() {
                     @Override
