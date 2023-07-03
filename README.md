@@ -24,17 +24,17 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Activities](#Activities)
+2. [Functions](#functions)
 3. [SpaceMaster App](#spacemaster-images-under-construction)
-4. [Links](#links)
-
+4. [How to Run SpaceMaster](#how-to-run-spacemaster)
+5. [Links](#links)
 ---
 
 ## Introduction
 
 With this app, users can easily view and access real-time information about available spaces, such as conference rooms, meeting areas, workstations, and shared facilities. The app enables users to check the availability of spaces, make reservations, and request any necessary resources or services associated with the space, all from their mobile devices.
 
-## Activities
+## Functions
 
 #### - Space Reservation and Availability
 
@@ -55,6 +55,13 @@ Users have the ability to edit their reservations. However, if they attempt to c
 #### - Reservation Management and Duration
 
 The system allows users to cancel their own reservations or enables responsible persons listed in a reservation to cancel it. Users can also check the reservations for a particular space within a selected duration, which can range from past, present, to future dates. The maximum duration for viewing reservations is set to 30 days.
+## How to Run SpaceMaster
+<ul>
+<li>Run <a href="https://developer.android.com/studio">Android studio</a> and Open(File -> Open) the directory called 'SpaceMaster' inside the cloned repository.</li>
+<li><a href="https://developer.android.com/studio/run/managing-avds">Create a virtual device</a> to run SpaceMaster app.</li>
+<li>Then, wait few minutes untill the files are loading and gradel sync is being completed. Afterthat, <a href="https://developer.android.com/studio/run/rundebugconfig">Create/Edit run Configurations</a>.</li>
+<li>After all <a href="https://developer.android.com/studio/run">build and run</a> SpaceMaster app.</li>
+</ul>
 
 ## SpaceMaster Images Under Construction
 <p align="center"> <img src = "docs/images/launcher.jpg" width="250"> <img src = "docs/images/signin.jpg" width="250"> <img src = "docs/images/signup.jpg" width="250"> <img src = "docs/images/search.jpg" width="250"> <img src = "docs/images/menu.jpg" width="250"></p>
