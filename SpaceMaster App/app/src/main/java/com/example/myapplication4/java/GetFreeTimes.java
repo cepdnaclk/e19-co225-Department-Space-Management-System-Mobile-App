@@ -27,7 +27,7 @@ public class GetFreeTimes {
     }
 
     public static List<Map<String, Object>> getFreeTimesonDate(Context context, String selectedDate, String lecture_hall) {
-        List<Map<String, Object>> userBookings = GetUserBookings.readUserBookingsOnDate(context, selectedDate);
+        List<Map<String, Object>> userBookings = GetUserBookingsForFreeTime.readUserBookingsOnDate(context, selectedDate);
         List<Map<String, Object>> freeTimes = new ArrayList<>();
 
         // Set the start and end time for the day in minutes
