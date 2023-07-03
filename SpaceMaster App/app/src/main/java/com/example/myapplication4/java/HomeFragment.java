@@ -56,21 +56,21 @@ public class HomeFragment extends Fragment {
         username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         //image begin
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            String photoUrl = user.getPhotoUrl().toString();
-
-            // Now you have the user's profile image URL (photoUrl).
-            // You can use Glide to load the image into an ImageView.
-
-            ImageView imageView = rootView.findViewById(R.id.userimage); // Replace `R.id.imageView` with your ImageView ID.
-
-            // Load the image using Glide
-            Glide.with(this)
-                    .load(photoUrl)
-                    .into(imageView);
-        }
+//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        if (user != null) {
+//            String photoUrl = user.getPhotoUrl().toString();
+//
+//            // Now you have the user's profile image URL (photoUrl).
+//            // You can use Glide to load the image into an ImageView.
+//
+//            ImageView imageView = rootView.findViewById(R.id.userimage); // Replace `R.id.imageView` with your ImageView ID.
+//
+//            // Load the image using Glide
+//            Glide.with(this)
+//                    .load(photoUrl)
+//                    .into(imageView);
+//        }
         //image end
 
 
