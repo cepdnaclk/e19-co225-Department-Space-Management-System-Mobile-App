@@ -25,8 +25,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Functions](#functions)
-3. [SpaceMaster App](#spacemaster-images-under-construction)
-4. [How to Run SpaceMaster](#how-to-run-spacemaster)
+3. [How to Run SpaceMaster](#how-to-run-spacemaster)
+4. [Demo Screenshots](#demo-screenshots)
 5. [Links](#links)
 ---
 
@@ -57,14 +57,27 @@ Users have the ability to edit their reservations. However, if they attempt to c
 The system allows users to cancel their own reservations or enables responsible persons listed in a reservation to cancel it. Users can also check the reservations for a particular space within a selected duration, which can range from past, present, to future dates. The maximum duration for viewing reservations is set to 30 days.
 ## How to Run SpaceMaster
 <ul>
-<li>Run <a href="https://developer.android.com/studio">Android studio</a> and Open(File -> Open) the directory called 'SpaceMaster' inside the cloned repository.</li>
+<li>Run <a href="https://developer.android.com/studio">Android studio</a> and Open('File -> Open') the directory called 'SpaceMaster' inside the cloned repository.</li>
 <li><a href="https://developer.android.com/studio/run/managing-avds">Create a virtual device</a> to run SpaceMaster app.</li>
 <li>Then, wait few minutes untill the files are loading and gradel sync is being completed. Afterthat, <a href="https://developer.android.com/studio/run/rundebugconfig">Create/Edit run Configurations</a>.</li>
 <li>After all <a href="https://developer.android.com/studio/run">build and run</a> SpaceMaster app.</li>
+ <li>To build an apk for your android device, go to 'build -> Bundle(s)/Apk(s)' Apk</li>
 </ul>
 
-## SpaceMaster Images Under Construction
-<p align="center"> <img src = "docs/images/launcher.jpg" width="250"> <img src = "docs/images/signin.jpg" width="250"> <img src = "docs/images/signup.jpg" width="250"> <img src = "docs/images/search.jpg" width="250"> <img src = "docs/images/menu.jpg" width="250"></p>
+## Demo Screenshots
+<p align="center">
+ <img src = "docs/images/launcher.jpg" width="250">
+ <img src = "docs/images/signin.jpg" width="250">
+ <img src = "docs/images/signup.jpg" width="250">
+ <img src = "docs/images/search.png" width="250">
+ <img src = "docs/images/menu.jpg" width="250">
+ <img src = "docs/images/byspace.jpg" width="250">
+ <img src = "docs/images/bytime.jpg" width="250">
+ <img src = "docs/images/book.png" width="250">
+ <img src = "docs/images/availble.jpg" width="250">
+ <img src = "docs/images/appointments.jpg" width="250">
+ <img src = "docs/images/resperson.jpg" width="250">
+</p>
 
 ## Links
 
