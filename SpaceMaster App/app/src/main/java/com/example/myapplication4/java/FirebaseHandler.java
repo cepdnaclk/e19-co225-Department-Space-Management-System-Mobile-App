@@ -363,7 +363,7 @@ public class FirebaseHandler {
                                                 for (QueryDocumentSnapshot documen : tas.getResult()) {
                                                     String recipientToken = documen.getString("token");
                                                     FCMNotificationSender fcmNotificationSender=new FCMNotificationSender();
-                                                    fcmNotificationSender.sendNotification(recipientToken,"Time slot Available","leture hall: "+removeLecture_hall+"  date: "+removeDate);
+                                                    fcmNotificationSender.sendNotification(recipientToken,"Time slot Available","leture hall: "+lectureHallNamingConversion(Integer.parseInt(removeLecture_hall))+"  date: "+removeDate);
                                                 }
                                             } else {
                                             }

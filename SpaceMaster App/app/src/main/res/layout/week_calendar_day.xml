@@ -39,7 +39,7 @@
         android:layout_height="5dp"
         android:layout_gravity="bottom"
         android:visibility="invisible"
-        android:background="@color/example_7_yellow" />
+        android:background="@color/yellowHard" />
 
 </FrameLayout>
 
