@@ -6,18 +6,19 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\udaya\.android\avd\Pixel_3a_API_33_x86_64.avd" />
+            <type value="ANY_DEVICE" /> <!-- Updated line: Changed type value to "ANY_DEVICE" -->
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-07-03T11:57:27.120460Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-07-03T11:48:18.638078400Z" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
-          <Key />
+          <Key>
+            <type value="ANY_DEVICE" /> <!-- Updated line: Changed type value to "ANY_DEVICE" -->
+          </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetsSelectedWithDialog>
