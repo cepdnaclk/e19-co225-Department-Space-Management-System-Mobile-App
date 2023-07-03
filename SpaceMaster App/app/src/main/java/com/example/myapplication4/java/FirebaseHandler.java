@@ -227,7 +227,7 @@ public class FirebaseHandler {
                             HashMap<String, String> adminMap = new HashMap<>();
                             String uid = document.getString("uid");
                             String name = document.getString("name");
-                            adminMap.put("checked", "false");
+                            adminMap.put("checked", "true");
                             adminMap.put("uid", uid);
                             adminMap.put("name", name);
                             adminList.add(adminMap);
