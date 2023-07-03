@@ -54,7 +54,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             if (responsiblePerson.containsKey("uid") && responsiblePerson.get("uid").equals(desiredUid)) {
                 // Found the matching UID
                 // You can access other values in the HashMap or perform additional actions here
+
                 responsibleName = responsiblePerson.get("name");
+                int index = responsibleName.indexOf(" ");
+
+                if (index != -1) {
+                    responsibleName = responsibleName.substring(0, index);
+                }
                 break;
             }
         }
