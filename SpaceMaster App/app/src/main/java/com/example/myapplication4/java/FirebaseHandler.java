@@ -89,6 +89,56 @@ public class FirebaseHandler {
                     }
                 });
     }
+    public static void firebaseToLocalNonSync(String targetDate, String spaces, Context context) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        db = FirebaseFirestore.getInstance();
+        spaces = "spaces";
+
+        db.collection(spaces)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<Map<String, Object>> hashMapList = new ArrayList<>();
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // Retrieve the booking data from each document
+                            String uid = document.getString("uid");
+                            String date = document.getString("date");
+                            String startTime = document.getString("start_time");
+                            String endTime = document.getString("end_time");
+                            String lecture_hall = document.getString("lecture_hall");
+                            String key = document.getString("key");
+                            String user = document.getString("user");
+                            List<String> uidresponsibles = (List<String>) document.get("uidresponsibles");
+
+                            Map<String, Object> hashMap1 = new HashMap<>();
+                            hashMap1.put("uid", uid);
+                            hashMap1.put("date", date);
+                            hashMap1.put("start_time", startTime);
+                            hashMap1.put("end_time", endTime);
+                            hashMap1.put("lecture_hall", lecture_hall);
+                            hashMap1.put("user", user);
+                            hashMap1.put("key", key);
+                            hashMap1.put("uidresponsibles", uidresponsibles);
+                            hashMapList.add(hashMap1);
+
+                        }
+
+                        // Convert the list to JSON and store it in SharedPreferences
+                        String json = new Gson().toJson(hashMapList);
+                        editor.putString("data", json);
+                        editor.apply();
+
+                    } else {
+                        // Handle errors
+                        Log.e("abc", "Error getting bookings: " + task.getException());
+                    }
+
+                });
+    }
 
     public static List<Map<String, Object>> readLocal(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyData", Context.MODE_PRIVATE);
@@ -195,7 +245,10 @@ public class FirebaseHandler {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            Log.i("abc","dddddddd");
+                            FirebaseHandler.firebaseToLocalNonSync("","",context);
                             findNotifiers(context,date,lecture_hall);
+                            FirebaseHandler.firebaseToLocal("","",context);
 //                            Log.i("abc",date+lecture_hall);
                         }
                     })
