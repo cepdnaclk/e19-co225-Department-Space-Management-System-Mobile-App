@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:text="@string/user_name"
             android:textStyle="bold"
-            android:layout_marginTop="400sp"
+            android:layout_marginTop="170sp"
             android:textColor="@color/white"
             android:gravity="center"
             android:autoSizeMaxTextSize="100sp"
