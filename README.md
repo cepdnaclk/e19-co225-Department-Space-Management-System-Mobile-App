@@ -61,7 +61,7 @@ The system allows users to cancel their own reservations or enables responsible 
 <li><a href="https://developer.android.com/studio/run/managing-avds">Create a virtual device</a> to run SpaceMaster app.</li>
 <li>Then, wait few minutes untill the files are loading and gradel sync is being completed. Afterthat, <a href="https://developer.android.com/studio/run/rundebugconfig">Create/Edit run Configurations</a>.</li>
 <li>After all <a href="https://developer.android.com/studio/run">build and run</a> SpaceMaster app.</li>
- <li>To build an apk for your android device, go to 'build -> Bundle(s)/Apk(s)' Apk</li>
+ <li>To build an apk for your android device, go to 'build -> Bundle(s)/APK(s) -> Build APKs</li>
 </ul>
 
 ## Demo Screenshots
