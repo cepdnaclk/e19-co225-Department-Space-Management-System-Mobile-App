@@ -127,7 +127,7 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/example_1_bg">
+        android:background="#99000000">
 
         <!-- Add menu items and other content for your side menu here -->
         <ImageView
