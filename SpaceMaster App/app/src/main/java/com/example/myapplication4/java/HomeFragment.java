@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.myapplication4.R;
 import com.example.myapplication4.java.notificationServer.FCMNotificationSender;
 import com.google.android.material.navigation.NavigationView;
@@ -27,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.fragment.app.FragmentTransaction;
+
+import java.time.Instant;
+
 public class HomeFragment extends Fragment {
     private Button searchBySpaceButton;
     private Button searchByTimeButton;
@@ -57,26 +59,26 @@ public class HomeFragment extends Fragment {
 
         //image begin
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            String photoUrl = user.getPhotoUrl().toString();
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        if (user != null) {
+//            String photoUrl = user.getPhotoUrl().toString();
 
             // Now you have the user's profile image URL (photoUrl).
             // You can use Glide to load the image into an ImageView.
 
-            ImageView imageView = rootView.findViewById(R.id.userimage); // Replace `R.id.imageView` with your ImageView ID.
+//            ImageView imageView = rootView.findViewById(R.id.userimage); // Replace `R.id.imageView` with your ImageView ID.
 
             // Load the image using Glide
-            Glide.with(this)
-                    .load(photoUrl)
-                    .into(imageView);
-        }
+//            Glide.with(this)
+//                    .load(photoUrl)
+//                    .into(imageView);
+//        }
         //image end
 
 
-        if(FirebaseHandler.isAdminUser(getContext())){
-            responsiblePersons.setVisibility(View.GONE);
-        }
+//        if(FirebaseHandler.isAdminUser(getContext())){
+//            responsiblePersons.setVisibility(View.GONE);
+//        }
 
 
 

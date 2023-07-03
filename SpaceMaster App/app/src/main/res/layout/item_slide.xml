@@ -7,20 +7,23 @@
         android:id="@+id/imageViewBase"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
 
     <!-- Foreground Image -->
     <ImageView
         android:id="@+id/imageViewImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
     <ImageView
         android:id="@+id/imageView1Red"
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
 
     <!-- Foreground Image -->
     <ImageView
@@ -28,13 +31,15 @@
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
     <ImageView
         android:id="@+id/imageView2Red"
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
 
     <!-- Foreground Image -->
     <ImageView
@@ -42,7 +47,8 @@
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/todo" />
 
 
 

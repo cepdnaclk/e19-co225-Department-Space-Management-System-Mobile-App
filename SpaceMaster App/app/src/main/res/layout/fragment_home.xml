@@ -22,7 +22,8 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/settings_icon"
             android:scaleType="centerInside"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/settings_icon"
+            android:contentDescription="@string/todo" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -52,24 +53,6 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="39dp"
-            android:layout_below="@+id/textView3"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="557dp"
-            android:text="@string/search_by"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textSize="25sp"
-            android:textStyle="italic" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/searchByTimeButton"
@@ -103,7 +86,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="103dp"
-            android:layout_marginTop="323dp"
+            android:layout_marginTop="270dp"
             android:layout_marginEnd="103dp"
             android:autoSizeMaxTextSize="100sp"
             android:autoSizeMinTextSize="10sp"
@@ -120,16 +103,23 @@
             android:textStyle="bold"
             app:cornerRadius="15dp" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="466dp"
+            android:text="@string/search_by"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp">
-
-    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -146,7 +136,7 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/user"
             android:layout_marginTop="40sp"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:layout_width="match_parent"
@@ -154,7 +144,7 @@
             android:layout_height="wrap_content"
             android:text="@string/user_name"
             android:textStyle="bold"
-            android:layout_marginTop="180sp"
+            android:layout_marginTop="400sp"
             android:textColor="@color/white"
             android:gravity="center"
             android:autoSizeMaxTextSize="100sp"
@@ -168,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/yellowHard"
-            android:drawableEnd="@drawable/baseline_login_24"
+            android:drawableEnd="@drawable/baseline_logout_24"
             android:drawablePadding="20dp"
             android:text="@string/log_out"
             android:textSize="15sp"
@@ -185,21 +175,22 @@
         <Button
             android:id="@+id/responsiblepersons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/yellowHard"
-            android:drawableEnd="@drawable/baseline_person_add_alt_24"
-            android:drawablePadding="20dp"
-            android:text="Responsible Persons"
-            android:textSize="15sp"
-            app:cornerRadius="10sp"
-            android:layout_marginTop="280sp"
-            android:textColor="@color/example_1_bg"
+            android:layout_height="100sp"
             android:layout_marginStart="5sp"
+            android:layout_marginTop="280sp"
             android:layout_marginEnd="5sp"
+            android:layout_marginBottom="10sp"
             android:autoSizeMaxTextSize="100sp"
-            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMinTextSize="20sp"
             android:autoSizeStepGranularity="2sp"
-            android:autoSizeTextType="uniform"/>
+            android:autoSizeTextType="uniform"
+            android:backgroundTint="@color/yellowHard"
+            android:drawableBottom="@drawable/baseline_person_add_alt_24"
+            android:drawablePadding="20dp"
+            android:text="@string/responsible_persons"
+            android:textColor="@color/example_1_bg"
+            android:textSize="15sp"
+            app:cornerRadius="10sp" />
 
 
 

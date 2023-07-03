@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:paddingTop="10dp"
+android:paddingTop="15dp"
 android:background="@color/example_1_bg_light"
 tools:context=".java.ResponsiblePersonsFragment">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_marginTop="15dp"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_marginTop="15dp"
+        tools:layout_editor_absoluteX="0dp" />
 
 </FrameLayout>
