@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
         username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         //image begin
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 //        FirebaseUser user = firebaseAuth.getCurrentUser();
 //        if (user != null) {
 //            String photoUrl = user.getPhotoUrl().toString();
@@ -81,9 +81,9 @@ public class HomeFragment extends Fragment {
         //image end
 
 
-//        if(FirebaseHandler.isAdminUser(getContext())){
-//            responsiblePersons.setVisibility(View.GONE);
-//        }
+        if(FirebaseHandler.isAdminUser(getContext())){
+            responsiblePersons.setVisibility(View.GONE);
+        }
 
 
 
@@ -99,8 +99,13 @@ public class HomeFragment extends Fragment {
         });
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if(FirebaseHandler.isAdminUser(getContext())){
+                    responsiblePersons.setVisibility(View.GONE);
+                }
+
                 drawerLayout.openDrawer(GravityCompat.START);
                 signOutButton.setOnClickListener(new View.OnClickListener() {
                     @Override
