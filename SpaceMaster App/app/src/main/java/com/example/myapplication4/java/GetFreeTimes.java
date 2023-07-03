@@ -56,7 +56,6 @@ public class GetFreeTimes {
                 int bookingEndTime = Integer.parseInt((String) booking.get("end_time"));
 
                 if(bookingStartTime<endTime && bookingStartTime>startTime){
-                // Check if there is a gap between the previous booking and the current booking
                 if (bookingStartTime > previousEndTime) {
                     // Add the free time interval
                     Map<String, Object> freeTime = new HashMap<>();
@@ -66,12 +65,15 @@ public class GetFreeTimes {
                     freeTime.put("date",selectedDate);
                     freeTimes.add(freeTime);
                 }
+                }
 
                 // Update the previousEndTime to the end time of the current booking
                 previousEndTime = bookingEndTime;
-            }}
-        }
 
+            }
+
+        }
+        if(previousEndTime<endTime && previousEndTime>=startTime){
         // Check if there is a gap between the last booking and the end time of the day
         if (endTime > previousEndTime) {
             // Add the free time interval
@@ -82,6 +84,7 @@ public class GetFreeTimes {
             freeTime.put("date",selectedDate);
             freeTimes.add(freeTime);
         }
+    }
 
         return freeTimes;
     }
