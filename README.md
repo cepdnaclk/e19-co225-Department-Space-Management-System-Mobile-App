@@ -5,8 +5,7 @@ Title: SpaceMaster
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
-
-# SpaceMaster
+<img src = "docs/images/spacemaster.png" width="370" height="60">
 
 ---
 
