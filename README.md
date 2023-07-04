@@ -32,6 +32,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 ## Introduction
 
 With this app, users can easily view and access real-time information about available spaces, such as conference rooms, meeting areas, workstations, and shared facilities. The app enables users to check the availability of spaces, make reservations, and request any necessary resources or services associated with the space, all from their mobile devices.
+<p><img src = "docs/images/logo.png" width="60" height="60"></p>
 
 ## Functions
 
