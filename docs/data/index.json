@@ -23,8 +23,12 @@
     ],
     "supervisors": [
         {
-            "name": "Mrs. Nadeesha Adikari",
-            "email": "nadeeshaa@eng.pdn.ac.lk"
+            "name": "Dr. Mahanama Wickramasinghe",
+            "email": "mahanamaw@eng.pdn.ac.lk"
+        },
+        {
+            "name": "Ms. Nadeesha Adikari",
+            "email": "adikari.nadeesha@gmail.com"
         }
     ],
     "tags": ["co225", "mobile"]
