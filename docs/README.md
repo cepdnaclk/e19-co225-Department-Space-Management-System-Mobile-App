@@ -9,34 +9,20 @@ title:
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# SpaceMaster
 
 ---
 
-This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
+[](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
 
 ![Sample Image](./images/sample.png)
 
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
-
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Other Sub Topics](#other-sub-topics)
-3. [Links](#links)
-
----
-
-## Introduction
-
- description of the real world problem and solution, impact
-
-## Other Sub Topics
-
-.....
+-  E/19/142, Hashini Ilangarathne, [email](mailto:e19142@eng.pdn.ac.lk)
+-  E/19/155, Udaya Kavinda, [email](mailto:e19155@eng.pdn.ac.lk)
+-  E/19/163, Eshan Jayasundara, [email](mailto:e19163@eng.pdn.ac.lk)
+-  E/19/423, Jagath Chaminda, [email](mailto:e19423@eng.pdn.ac.lk)
 
 ## Links
 
