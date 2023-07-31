@@ -19,9 +19,8 @@ title:
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Functions](#functions)
-3. [How to Run SpaceMaster](#how-to-run-spacemaster)
-4. [Demo Screenshots](#demo-screenshots)
-5. [Links](#links)
+3. [Demo Screenshots](#demo-screenshots)
+4. [Links](#links)
 
 ## Introduction
 
