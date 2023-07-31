@@ -16,6 +16,13 @@ title:
 [](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
 <p><img src = "images/logo.png" width="100" height="100"></p>
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Functions](#functions)
+3. [How to Run SpaceMaster](#how-to-run-spacemaster)
+4. [Demo Screenshots](#demo-screenshots)
+5. [Links](#links)
+
 ## Introduction
 
 With this app, users can easily view and access real-time information about available spaces, such as conference rooms, meeting areas, workstations, and shared facilities. The app enables users to check the availability of spaces, make reservations, and request any necessary resources or services associated with the space, all from their mobile devices.
