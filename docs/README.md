@@ -13,8 +13,13 @@ title: SpaceMaster
 
 ---
 
-[](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
 <p><img src = "images/logo.png" width="100" height="100"></p>
+
+## Team
+-  E/19/142, Hashini Ilangarathne, [email](mailto:e19142@eng.pdn.ac.lk)
+-  E/19/155, Udaya Kavinda, [email](mailto:e19155@eng.pdn.ac.lk)
+-  E/19/163, Eshan Jayasundara, [email](mailto:e19163@eng.pdn.ac.lk)
+-  E/19/423, Jagath Chaminda, [email](mailto:e19423@eng.pdn.ac.lk)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -62,13 +67,6 @@ The system allows users to cancel their own reservations or enables responsible 
  <img src = "images/appointments.jpg" width="250">
  <img src = "images/resperson.jpg" width="250">
 </p>
-
-
-## Team
--  E/19/142, Hashini Ilangarathne, [email](mailto:e19142@eng.pdn.ac.lk)
--  E/19/155, Udaya Kavinda, [email](mailto:e19155@eng.pdn.ac.lk)
--  E/19/163, Eshan Jayasundara, [email](mailto:e19163@eng.pdn.ac.lk)
--  E/19/423, Jagath Chaminda, [email](mailto:e19423@eng.pdn.ac.lk)
 
 ## Links
 
